@@ -243,6 +243,11 @@
 
             // User msg
             chat.innerHTML += `<div style="text-align: right; margin: 5px; color: #333;"><b>Vos:</b> ${text}</div>`;
+            const loadingDiv = document.createElement('div');
+            loadingDiv.style.color = '#999';
+            loadingDiv.innerHTML = '<i>Escribiendo...</i>';
+            chat.appendChild(loadingDiv);
+
             input.value = '';
             chat.scrollTop = chat.scrollHeight;
 
@@ -254,8 +259,9 @@
                 });
                 const data = await res.json();
 
+                loadingDiv.remove();
                 // Bot msg
-                chat.innerHTML += `<div style="text-align: left; margin: 5px; color: #2980b9;"><b>Bot:</b> ${data.text || '...'}</div>`;
+                chat.innerHTML += `<div style="text-align: left; margin: 5px; color: #2980b9;"><b>Bot:</b> ${data.response || '...'}</div>`;
                 if (data.action) {
                     chat.innerHTML += `<div style="background: #eee; font-size: 0.8em; padding: 5px;">🔧 Acción: ${data.action.action}</div>`;
                 }

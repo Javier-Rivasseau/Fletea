@@ -26,8 +26,8 @@ async function processWithKimi(messages) {
         const response = await client.chat.completions.create({
             model: process.env.KIMI_MODEL || 'moonshotai/kimi-k2.5',
             messages,
-            temperature: 0.3, // Temp baja para comandos precisos
-            max_tokens: 2048,
+            temperature: 0.1, // Lower temperature is faster/more deterministic
+            max_tokens: 500, // Reduced from 2048 for faster response
         });
         return response.choices[0].message.content;
     } catch (error) {
