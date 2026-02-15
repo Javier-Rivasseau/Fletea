@@ -26,15 +26,31 @@ async function connectToWhatsApp() {
     }
 
     const sock = makeWASocket({
-        printQRInTerminal: true, // Esto imprimirá el QR en los logs de Railway/Terminal
+        printQRInTerminal: !process.env.PHONE_NUMBER, // Solo imprimir QR si no hay numero para pairing
         auth: state,
-        defaultQueryTimeoutMs: undefined, // Evitar timeouts en algunas redes
+        defaultQueryTimeoutMs: undefined,
     });
+
+    // Soporte para Pairing Code (Alternativa al QR)
+    if (process.env.PHONE_NUMBER && !sock.authState.creds.registered) {
+        logger.info(`📲 Solicitando código de vinculación para: ${process.env.PHONE_NUMBER}`);
+        setTimeout(async () => {
+            try {
+                const code = await sock.requestPairingCode(process.env.PHONE_NUMBER);
+                logger.info('╔══════════════════════════════════════════════╗');
+                logger.info(`║  TU CÓDIGO DE VINCULACIÓN: ${code}       ║`);
+                logger.info('╚══════════════════════════════════════════════╝');
+                logger.info('Ingresalo en WhatsApp > Dispositivos vinculados > Vincular con código.');
+            } catch (err) {
+                logger.error('Error al solicitar pairing code:', err);
+            }
+        }, 3000);
+    }
 
     sock.ev.on('connection.update', (update) => {
         const { connection, lastDisconnect, qr } = update;
 
-        if (qr) {
+        if (qr && !process.env.PHONE_NUMBER) {
             logger.info('📲 Escaneá este QR con tu celular para conectar el bot:');
             qrcode.generate(qr, { small: true });
         }
