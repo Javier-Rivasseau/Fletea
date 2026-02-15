@@ -39,31 +39,29 @@ async function startServer() {
         initKimiClient();
         logger.info('🧠 Kimi AI inicializado');
 
-        // 3. Conectar a WhatsApp (Baileys) - Solo si está habilitado explícitamente
-        if (process.env.ENABLE_WHATSAPP === 'true') {
-            connectToWhatsApp();
-            logger.info('📱 Conectando a WhatsApp...');
-        } else {
-            logger.info('📱 WhatsApp desactivado (ENABLE_WHATSAPP !== true). Usando solo modo Web.');
-        }
-
         // 4. Rutas API (Dashboard)
         const apiRoutes = createApiRouter();
         app.use('/api', apiRoutes);
         logger.info('🌐 Rutas API cargadas');
 
-        // 5. Webhook de WhatsApp (REMOVED - Using Baileys)
-        // const webhookRouter = createWebhookRouter();
-        // app.use('/webhook', webhookRouter);
-        // logger.info('🔗 Webhook de WhatsApp configurado');
+        // Redirigir la vieja ruta del dashboard a la raíz
+        app.get('/dashboard.html', (req, res) => {
+            logger.info('🔄 Redirigiendo /dashboard.html a /');
+            res.redirect('/');
+        });
+
+        // Registrar accesos al dashboard
+        app.get('/', (req, res, next) => {
+            logger.info(`🖥️ Acceso al dashboard desde: ${req.ip}`);
+            next();
+        });
 
         // 6. Configurar callback para notificaciones web (simulación)
         setWebNotifyCallback((message) => {
-            // This could be used to push messages to connected clients (e.g., via WebSockets)
             logger.debug('Web notification callback triggered:', message);
         });
 
-        // 7. Endpoint de Simulación (para desarrollo/tests sin WhatsApp real)
+        // 7. Endpoint de Simulación
         app.post('/api/simulate', async (req, res) => {
             try {
                 const { phone, text, name } = req.body;
@@ -87,6 +85,15 @@ async function startServer() {
             logger.info(`🌐 Host: 0.0.0.0`);
             logger.info(`📊 Dashboard: http://localhost:${PORT}/`);
             logger.info('═══════════════════════════════════════════════');
+
+            // 3. Conectar a WhatsApp (Baileys) – DESPUÉS de que el servidor esté listo
+            // Esto ayuda a pasar los health checks de despliegue antes de iniciar WA.
+            if (process.env.ENABLE_WHATSAPP === 'true') {
+                logger.info('📱 Iniciando conexión a WhatsApp...');
+                connectToWhatsApp();
+            } else {
+                logger.info('📱 WhatsApp desactivado (ENABLE_WHATSAPP !== true). Usando solo modo Web.');
+            }
 
             if (MODE === 'simulation') {
                 logger.info('🎮 MODO SIMULACIÓN ACTIVADO');
