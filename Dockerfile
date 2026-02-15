@@ -1,12 +1,8 @@
-FROM node:20-alpine
+# Usamos una versión ligera de Node.js
+FROM node:20-slim
 
-# Install system dependencies (required for some Baileys/Canvas dependencies if needed)
-RUN apk add --no-cache \
-    python3 \
-    make \
-    g++ \
-    git
-
+# Instalamos solo lo mínimo necesario para dependencias de red de Baileys si hiciera falta
+# (En la mayoría de los casos con node-slim es suficiente para un bot simple)
 WORKDIR /app
 
 # Copy package files
