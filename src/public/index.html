@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FletesCerealeros - Panel de Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- HEADER -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <header class="header">
+    <div class="header-logo">
+      <span class="logo-icon">🚛</span>
+      <h1>FletesCerealeros</h1>
+      <span class="header-badge">Pehuajó</span>
+    </div>
+    <div class="header-status">
+      <span class="status-dot"></span>
+      <span id="mode-label">Modo Simulación</span>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- STATS BAR -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <section class="stats-bar" id="stats-bar">
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-users">0</span>
+          <span class="stat-label">Usuarios</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🚛</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-camioneros">0</span>
+          <span class="stat-label">Camioneros</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌾</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-productores">0</span>
+          <span class="stat-label">Productores</span>
+        </div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-icon">🔄</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-retornos">0</span>
+          <span class="stat-label">Retornos vacíos</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📦</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-pedidos">0</span>
+          <span class="stat-label">Pedidos flete</span>
+        </div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-info">
+          <span class="stat-value" id="stat-matches">0</span>
+          <span class="stat-label">Matches</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- CONTENT GRID -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div class="content-grid">
+      
+      <!-- SIMULADOR WHATSAPP -->
+      <section class="panel chat-panel">
+        <div class="panel-header">
+          <h2>💬 Simulador WhatsApp</h2>
+          <p class="panel-subtitle">Probá como si fueras un camionero o productor</p>
+        </div>
+
+        <!-- Selector de perfiles de prueba -->
+        <div class="profile-selector">
+          <button class="profile-btn active" data-phone="5492396550001" data-name="Raúl (Camionero)">
+            🚛 Raúl<br><small>Camionero</small>
+          </button>
+          <button class="profile-btn" data-phone="5492396550002" data-name="María (Productora)">
+            🌾 María<br><small>Productora</small>
+          </button>
+          <button class="profile-btn" data-phone="5492396550003" data-name="Pedro (Camionero)">
+            🚛 Pedro<br><small>Camionero</small>
+          </button>
+        </div>
+
+        <!-- Quick messages -->
+        <div class="quick-messages">
+          <button class="quick-btn" data-msg="Hola, soy camionero de Pehuajó">👋 Presentarme</button>
+          <button class="quick-btn" data-msg="Vuelvo de Rosario en 2 horas">🔄 Retorno vacío</button>
+          <button class="quick-btn" data-msg="Necesito sacar 28 tn de soja a Rosario">📦 Pedir flete</button>
+          <button class="quick-btn" data-msg="¿Qué hay disponible?">📋 Ver disponible</button>
+          <button class="quick-btn" data-msg="ayuda">❓ Ayuda</button>
+        </div>
+
+        <!-- Chat area -->
+        <div class="chat-container" id="chat-container">
+          <div class="chat-welcome">
+            <div class="chat-welcome-icon">🚛🌾</div>
+            <p>Seleccioná un perfil y empezá a chatear.</p>
+            <p><small>Simulá conversaciones de WhatsApp sin gastar nada.</small></p>
+          </div>
+        </div>
+
+        <!-- Input -->
+        <form class="chat-input-bar" id="chat-form">
+          <input type="text" id="chat-input" placeholder="Escribí un mensaje..." autocomplete="off">
+          <button type="submit" class="send-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+          </button>
+        </form>
+      </section>
+
+      <!-- PANEL DERECHO -->
+      <div class="right-panels">
+        <!-- VIAJES ACTIVOS -->
+        <section class="panel">
+          <div class="panel-header">
+            <h2>📍 Viajes Activos</h2>
+          </div>
+          <div class="trips-list" id="trips-list">
+            <div class="empty-state">No hay viajes registrados todavía</div>
+          </div>
+        </section>
+
+        <!-- MATCHES -->
+        <section class="panel">
+          <div class="panel-header">
+            <h2>🎯 Matches Recientes</h2>
+          </div>
+          <div class="matches-list" id="matches-list">
+            <div class="empty-state">No hay matches todavía</div>
+          </div>
+        </section>
+
+        <!-- USUARIOS -->
+        <section class="panel">
+          <div class="panel-header">
+            <h2>👥 Usuarios Registrados</h2>
+          </div>
+          <div class="users-list" id="users-list">
+            <div class="empty-state">No hay usuarios registrados</div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>FletesCerealeros © 2026 — Pehuajó, Buenos Aires, Argentina — Reduciendo viajes vacíos 🌾🚛</p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>

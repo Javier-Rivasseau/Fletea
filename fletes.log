@@ -1,0 +1,905 @@
+2026-02-14 18:01:16 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:01:16 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 18:01:16 [INFO] 📋 Modo: simulation
+2026-02-14 18:01:16 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:01:16 [INFO] ✅ Base de datos inicializada
+2026-02-14 18:01:16 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 18:01:16 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 18:01:16 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 18:01:16 [INFO] 
+2026-02-14 18:01:16 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 18:01:16 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 18:01:16 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 18:01:16 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 18:01:16 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 18:04:16 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Hola, soy Raul, camionero de Pehuajo"
+2026-02-14 18:04:17 [INFO] 🤖 Respuesta AI: "¡Hola Raul! 🚛 Bienvenido a FletesCerealeros. Te registré como camionero de Pehuajo.
+
+Podés avisarme..."
+2026-02-14 18:04:17 [INFO] ⚡ Acción detectada: REGISTRAR_USUARIO
+2026-02-14 18:04:17 [INFO] 👤 Usuario registrado: Raul (camionero) de Pehuajo
+2026-02-14 18:04:17 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: ¡Hola Raul! 🚛 Bienvenido a FletesCerealeros. Te registré como camionero de Pehuajo.
+
+Podés avisarme cuando vuelvas vacío de un puerto y te busco carga para el retorno. También podés ofrecer viajes.
+2026-02-14 18:15:28 [INFO] 🔄 Procesando mensaje de 5492396550002 (web): "Hola, soy Maria, productora de Carlos Casares"
+2026-02-14 18:15:28 [INFO] 🤖 Respuesta AI: "¡Hola Maria! 🚛 Bienvenido a FletesCerealeros. Te registré como productor de Carlos Casares.
+
+Podés ..."
+2026-02-14 18:15:28 [INFO] ⚡ Acción detectada: REGISTRAR_USUARIO
+2026-02-14 18:15:28 [INFO] 👤 Usuario registrado: Maria (productor) de Carlos Casares
+2026-02-14 18:15:28 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: ¡Hola Maria! 🚛 Bienvenido a FletesCerealeros. Te registré como productor de Carlos Casares.
+
+Podés pedirme flete cuando necesites mover cereal y te busco un camionero disponible.
+2026-02-14 18:16:59 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Hola, soy Raul, camionero de Pehuajo"
+2026-02-14 18:16:59 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:16:59 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:16:59 [INFO] 🔄 Procesando mensaje de 5492396550002 (web): "Hola, soy Maria, productora de Carlos Casares"
+2026-02-14 18:16:59 [INFO] 🤖 Respuesta AI: "Hola Maria! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hor..."
+2026-02-14 18:16:59 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: Hola Maria! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:16:59 [INFO] 🔄 Procesando mensaje de 5492396550002 (web): "Necesito sacar 28 tn de soja a Rosario"
+2026-02-14 18:16:59 [INFO] 🤖 Respuesta AI: "🌾 ¡Anotado, Maria! Pedido de flete: 28 tn de soja, Carlos Casares → Rosario.
+
+Te aviso cuando haya ..."
+2026-02-14 18:16:59 [INFO] ⚡ Acción detectada: PEDIDO_FLETE
+2026-02-14 18:16:59 [INFO] 📦 Pedido de flete registrado: Carlos Casares → Rosario
+2026-02-14 18:16:59 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🌾 ¡Anotado, Maria! Pedido de flete: 28 tn de soja, Carlos Casares → Rosario.
+
+Te aviso cuando haya un camionero disponible en esa ruta. ✅
+2026-02-14 18:16:59 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Vuelvo de Rosario en 2 horas"
+2026-02-14 18:16:59 [INFO] 🤖 Respuesta AI: "🚛 ¡Registrado, Raul! Retorno vacío: Rosario → Pehuajo (llegada estimada en 2 h).
+
+Estoy buscando si..."
+2026-02-14 18:16:59 [INFO] ⚡ Acción detectada: RETORNO_VACIO
+2026-02-14 18:16:59 [INFO] 🔄 Retorno vacío registrado: Rosario → Pehuajo
+2026-02-14 18:16:59 [INFO] 🎯 Encontrados 1 matches para retorno Rosario → Pehuajo
+2026-02-14 18:16:59 [INFO]   1. Maria: Carlos Casares → Rosario (score: 100)
+2026-02-14 18:16:59 [INFO] 🎯 MATCH! Camionero Raul ↔ Productor Maria (score: 100)
+2026-02-14 18:16:59 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🚛 ¡Registrado, Raul! Retorno vacío: Rosario → Pehuajo (llegada estimada en 2 h).
+
+Estoy buscando si alguien necesita flete en tu ruta. Te aviso enseguida si encuentro algo. ✅
+2026-02-14 18:16:59 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 Raul vuelve de Rosario hacia Pehuajo (llega en 2 h).
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:16:59 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 100/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:22:52 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Hola, soy camionero de Pehuajó"
+2026-02-14 18:22:52 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:22:52 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:26:53 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:26:53 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 18:26:53 [INFO] 📋 Modo: simulation
+2026-02-14 18:26:53 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:26:53 [INFO] ✅ Base de datos inicializada
+2026-02-14 18:26:53 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 18:26:53 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 18:26:53 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 18:26:53 [INFO] 
+2026-02-14 18:26:53 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 18:26:53 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 18:26:53 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 18:26:53 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 18:26:53 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 18:28:04 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Vuelvo de bahia blanca en aproximadamente 2 horas, voy a estar parado un rato, hasta carlos casares"
+2026-02-14 18:28:04 [INFO] 🤖 Respuesta AI: "🚛 ¡Registrado, Raul! Retorno vacío: bahia blanca → Pehuajo.
+
+Estoy buscando si alguien necesita fle..."
+2026-02-14 18:28:04 [INFO] ⚡ Acción detectada: RETORNO_VACIO
+2026-02-14 18:28:04 [INFO] 🔄 Retorno vacío registrado: bahia blanca → Pehuajo
+2026-02-14 18:28:04 [INFO] 🎯 Encontrados 1 matches para retorno bahia blanca → Pehuajo
+2026-02-14 18:28:04 [INFO]   1. Maria: Carlos Casares → Rosario (score: 34.24433555842417)
+2026-02-14 18:28:04 [INFO] 🎯 MATCH! Camionero Raul ↔ Productor Maria (score: 34.24433555842417)
+2026-02-14 18:28:04 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🚛 ¡Registrado, Raul! Retorno vacío: bahia blanca → Pehuajo.
+
+Estoy buscando si alguien necesita flete en tu ruta. Te aviso enseguida si encuentro algo. ✅
+2026-02-14 18:28:04 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 Raul vuelve de bahia blanca hacia Pehuajo.
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:28:04 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 34.24433555842417/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:28:30 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "si"
+2026-02-14 18:28:30 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:28:30 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:28:41 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): ""si""
+2026-02-14 18:28:41 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:28:41 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:28:51 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Vuelvo de bahia blanca en aproximadamente 2 horas, voy a estar parado un rato, hasta carlos casares"
+2026-02-14 18:28:51 [INFO] 🤖 Respuesta AI: "🚛 ¡Registrado, Raul! Retorno vacío: bahia blanca → Pehuajo.
+
+Estoy buscando si alguien necesita fle..."
+2026-02-14 18:28:51 [INFO] ⚡ Acción detectada: RETORNO_VACIO
+2026-02-14 18:28:51 [INFO] 🔄 Retorno vacío registrado: bahia blanca → Pehuajo
+2026-02-14 18:28:51 [INFO] 🎯 Encontrados 1 matches para retorno bahia blanca → Pehuajo
+2026-02-14 18:28:51 [INFO]   1. Maria: Carlos Casares → Rosario (score: 34.24433555842417)
+2026-02-14 18:28:51 [INFO] 🎯 MATCH! Camionero Raul ↔ Productor Maria (score: 34.24433555842417)
+2026-02-14 18:28:51 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🚛 ¡Registrado, Raul! Retorno vacío: bahia blanca → Pehuajo.
+
+Estoy buscando si alguien necesita flete en tu ruta. Te aviso enseguida si encuentro algo. ✅
+2026-02-14 18:28:51 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 Raul vuelve de bahia blanca hacia Pehuajo.
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:28:51 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 34.24433555842417/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:28:58 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "no"
+2026-02-14 18:28:58 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:28:58 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:29:20 [INFO] 🔄 Procesando mensaje de 5492396550003 (web): "hola voy de pehuajo a rosario mañana"
+2026-02-14 18:29:20 [INFO] 🤖 Respuesta AI: "¡Hola! 👋 Soy el bot de FletesCerealeros. Conecto camioneros cerealeros con productores para aprovec..."
+2026-02-14 18:29:20 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550003: ¡Hola! 👋 Soy el bot de FletesCerealeros. Conecto camioneros cerealeros con productores para aprovechar los retornos vacíos.
+
+¿Cómo te llamás? ¿Sos camionero 🚛 o productor 🌾? ¿De qué localidad?
+2026-02-14 18:29:31 [INFO] 🔄 Procesando mensaje de 5492396550003 (web): "soy camionero de Pehuajo"
+2026-02-14 18:29:31 [INFO] 🤖 Respuesta AI: "¡Hola camionero! 🚛 Bienvenido a FletesCerealeros. Te registré como camionero de Pehuajo.
+
+Podés avi..."
+2026-02-14 18:29:31 [INFO] ⚡ Acción detectada: REGISTRAR_USUARIO
+2026-02-14 18:29:31 [INFO] 👤 Usuario registrado: camionero (camionero) de Pehuajo
+2026-02-14 18:29:31 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550003: ¡Hola camionero! 🚛 Bienvenido a FletesCerealeros. Te registré como camionero de Pehuajo.
+
+Podés avisarme cuando vuelvas vacío de un puerto y te busco carga para el retorno. También podés ofrecer viajes.
+2026-02-14 18:29:43 [INFO] 🔄 Procesando mensaje de 5492396550003 (web): "vuelvo de pehuajo a rosario mañana"
+2026-02-14 18:29:43 [INFO] 🤖 Respuesta AI: "🚛 ¡Registrado, camionero! Retorno vacío: rosario → Pehuajo.
+
+Estoy buscando si alguien necesita fle..."
+2026-02-14 18:29:43 [INFO] ⚡ Acción detectada: RETORNO_VACIO
+2026-02-14 18:29:43 [INFO] 🔄 Retorno vacío registrado: rosario → Pehuajo
+2026-02-14 18:29:43 [INFO] 🎯 Encontrados 1 matches para retorno rosario → Pehuajo
+2026-02-14 18:29:43 [INFO]   1. Maria: Carlos Casares → Rosario (score: 100)
+2026-02-14 18:29:43 [INFO] 🎯 MATCH! Camionero camionero ↔ Productor Maria (score: 100)
+2026-02-14 18:29:43 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550003: 🚛 ¡Registrado, camionero! Retorno vacío: rosario → Pehuajo.
+
+Estoy buscando si alguien necesita flete en tu ruta. Te aviso enseguida si encuentro algo. ✅
+2026-02-14 18:29:43 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 camionero vuelve de rosario hacia Pehuajo.
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:29:43 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550003: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 100/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:29:49 [INFO] 🔄 Procesando mensaje de 5492396550003 (web): "si"
+2026-02-14 18:29:49 [INFO] 🤖 Respuesta AI: "Hola camionero! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2..."
+2026-02-14 18:29:49 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550003: Hola camionero! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:42:08 [INFO] 🔄 Procesando mensaje de 5492396550003 (web): "hola"
+2026-02-14 18:42:08 [INFO] 🤖 Respuesta AI: "Hola camionero! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2..."
+2026-02-14 18:42:08 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550003: Hola camionero! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:42:32 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:42:32 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 18:42:32 [INFO] 📋 Modo: simulation
+2026-02-14 18:42:32 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:42:32 [INFO] ✅ Base de datos inicializada
+2026-02-14 18:42:32 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 18:42:32 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 18:42:32 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 18:42:32 [INFO] 
+2026-02-14 18:42:32 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 18:42:32 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 18:42:32 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 18:42:32 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 18:42:32 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 18:42:34 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:42:34 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 18:42:34 [INFO] 📋 Modo: simulation
+2026-02-14 18:42:34 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:42:34 [INFO] ✅ Base de datos inicializada
+2026-02-14 18:42:34 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 18:42:34 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 18:42:34 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 18:42:34 [INFO] 
+2026-02-14 18:42:34 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 18:42:34 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 18:42:34 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 18:42:34 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 18:42:34 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 18:42:37 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:42:37 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 18:42:37 [INFO] 📋 Modo: simulation
+2026-02-14 18:42:37 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:42:37 [INFO] ✅ Base de datos inicializada
+2026-02-14 18:42:37 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 18:42:37 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 18:42:37 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 18:42:37 [INFO] 
+2026-02-14 18:42:37 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 18:42:37 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 18:42:37 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 18:42:37 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 18:42:37 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 18:42:47 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:42:47 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 18:42:47 [INFO] 📋 Modo: simulation
+2026-02-14 18:42:47 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:42:47 [INFO] ✅ Base de datos inicializada
+2026-02-14 18:42:47 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 18:42:47 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 18:42:47 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 18:42:47 [INFO] 
+2026-02-14 18:42:47 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 18:42:47 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 18:42:47 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 18:42:47 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 18:42:47 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 18:42:57 [INFO] 🔄 Procesando mensaje de 5492396550003 (web): "hola"
+2026-02-14 18:42:57 [INFO] 🤖 Respuesta AI: "Hola camionero! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2..."
+2026-02-14 18:42:57 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550003: Hola camionero! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:43:03 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:43:03 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 18:43:03 [INFO] 📋 Modo: simulation
+2026-02-14 18:43:03 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:43:03 [INFO] ✅ Base de datos inicializada
+2026-02-14 18:43:03 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 18:43:03 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 18:43:03 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 18:43:03 [INFO] 
+2026-02-14 18:43:03 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 18:43:03 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 18:43:03 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 18:43:03 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 18:43:03 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 18:43:09 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Hola, soy Raul, camionero de Pehuajo"
+2026-02-14 18:43:09 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:43:09 [INFO] 🔄 Procesando mensaje de 5492396550002 (web): "Hola, soy Maria, productora de Carlos Casares"
+2026-02-14 18:43:09 [INFO] 🤖 Respuesta AI: "Hola Maria! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hor..."
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: Hola Maria! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:43:09 [INFO] 🔄 Procesando mensaje de 5492396550002 (web): "Necesito sacar 28 tn de soja a Rosario"
+2026-02-14 18:43:09 [INFO] 🤖 Respuesta AI: "🌾 ¡Anotado, Maria! Pedido de flete: 28 tn de soja, Carlos Casares → Rosario.
+
+Te aviso cuando haya ..."
+2026-02-14 18:43:09 [INFO] ⚡ Acción detectada: PEDIDO_FLETE
+2026-02-14 18:43:09 [INFO] 📦 Pedido de flete registrado: Carlos Casares → Rosario
+2026-02-14 18:43:09 [INFO] 🎯 MATCH! Productor Maria ↔ Camionero camionero (score: 95)
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🌾 ¡Anotado, Maria! Pedido de flete: 28 tn de soja, Carlos Casares → Rosario.
+
+Te aviso cuando haya un camionero disponible en esa ruta. ✅
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550003: 🎯 ¡Hay carga para tu retorno vacío!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Encontré un camionero!
+
+🚛 camionero viene de rosario hacia Pehuajo
+
+Score de compatibilidad: 95/100
+
+Te aviso cuando confirme. ✅
+2026-02-14 18:43:09 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Vuelvo de Rosario en 2 horas"
+2026-02-14 18:43:09 [INFO] 🤖 Respuesta AI: "🚛 ¡Registrado, Raul! Retorno vacío: Rosario → Pehuajo (llegada estimada en 2 h).
+
+Estoy buscando si..."
+2026-02-14 18:43:09 [INFO] ⚡ Acción detectada: RETORNO_VACIO
+2026-02-14 18:43:09 [INFO] 🔄 Retorno vacío registrado: Rosario → Pehuajo
+2026-02-14 18:43:09 [INFO] 🎯 Encontrados 2 matches para retorno Rosario → Pehuajo
+2026-02-14 18:43:09 [INFO]   1. Maria: Carlos Casares → Rosario (score: 100)
+2026-02-14 18:43:09 [INFO]   2. Maria: Carlos Casares → Rosario (score: 100)
+2026-02-14 18:43:09 [INFO] 🎯 MATCH! Camionero Raul ↔ Productor Maria (score: 100)
+2026-02-14 18:43:09 [INFO] 🎯 MATCH! Camionero Raul ↔ Productor Maria (score: 100)
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🚛 ¡Registrado, Raul! Retorno vacío: Rosario → Pehuajo (llegada estimada en 2 h).
+
+Estoy buscando si alguien necesita flete en tu ruta. Te aviso enseguida si encuentro algo. ✅
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 Raul vuelve de Rosario hacia Pehuajo (llega en 2 h).
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 100/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 Raul vuelve de Rosario hacia Pehuajo (llega en 2 h).
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 100/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:43:09 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Sí, dale"
+2026-02-14 18:43:09 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:43:09 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:43:40 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:43:40 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 18:43:40 [INFO] 📋 Modo: simulation
+2026-02-14 18:43:40 [INFO] ═══════════════════════════════════════════════
+2026-02-14 18:43:40 [INFO] ✅ Base de datos inicializada
+2026-02-14 18:43:40 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 18:43:40 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 18:43:40 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 18:43:40 [INFO] 
+2026-02-14 18:43:40 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 18:43:40 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 18:43:40 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 18:43:40 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 18:43:40 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 18:43:43 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Hola, soy Raul, camionero de Pehuajo"
+2026-02-14 18:43:43 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:43:43 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:43:43 [INFO] 🔄 Procesando mensaje de 5492396550002 (web): "Hola, soy Maria, productora de Carlos Casares"
+2026-02-14 18:43:43 [INFO] 🤖 Respuesta AI: "Hola Maria! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hor..."
+2026-02-14 18:43:43 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: Hola Maria! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:43:44 [INFO] 🔄 Procesando mensaje de 5492396550002 (web): "Necesito sacar 28 tn de soja a Rosario"
+2026-02-14 18:43:44 [INFO] 🤖 Respuesta AI: "🌾 ¡Anotado, Maria! Pedido de flete: 28 tn de soja, Carlos Casares → Rosario.
+
+Te aviso cuando haya ..."
+2026-02-14 18:43:44 [INFO] ⚡ Acción detectada: PEDIDO_FLETE
+2026-02-14 18:43:44 [INFO] 📦 Pedido de flete registrado: Carlos Casares → Rosario
+2026-02-14 18:43:44 [INFO] 🎯 MATCH! Productor Maria ↔ Camionero Raul (score: 95)
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🌾 ¡Anotado, Maria! Pedido de flete: 28 tn de soja, Carlos Casares → Rosario.
+
+Te aviso cuando haya un camionero disponible en esa ruta. ✅
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Hay carga para tu retorno vacío!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Encontré un camionero!
+
+🚛 Raul viene de Rosario hacia Pehuajo
+
+Score de compatibilidad: 95/100
+
+Te aviso cuando confirme. ✅
+2026-02-14 18:43:44 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Vuelvo de Rosario en 2 horas"
+2026-02-14 18:43:44 [INFO] 🤖 Respuesta AI: "🚛 ¡Registrado, Raul! Retorno vacío: Rosario → Pehuajo (llegada estimada en 2 h).
+
+Estoy buscando si..."
+2026-02-14 18:43:44 [INFO] ⚡ Acción detectada: RETORNO_VACIO
+2026-02-14 18:43:44 [INFO] 🔄 Retorno vacío registrado: Rosario → Pehuajo
+2026-02-14 18:43:44 [INFO] 🎯 Encontrados 3 matches para retorno Rosario → Pehuajo
+2026-02-14 18:43:44 [INFO]   1. Maria: Carlos Casares → Rosario (score: 100)
+2026-02-14 18:43:44 [INFO]   2. Maria: Carlos Casares → Rosario (score: 100)
+2026-02-14 18:43:44 [INFO]   3. Maria: Carlos Casares → Rosario (score: 100)
+2026-02-14 18:43:44 [INFO] 🎯 MATCH! Camionero Raul ↔ Productor Maria (score: 100)
+2026-02-14 18:43:44 [INFO] 🎯 MATCH! Camionero Raul ↔ Productor Maria (score: 100)
+2026-02-14 18:43:44 [INFO] 🎯 MATCH! Camionero Raul ↔ Productor Maria (score: 100)
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🚛 ¡Registrado, Raul! Retorno vacío: Rosario → Pehuajo (llegada estimada en 2 h).
+
+Estoy buscando si alguien necesita flete en tu ruta. Te aviso enseguida si encuentro algo. ✅
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 Raul vuelve de Rosario hacia Pehuajo (llega en 2 h).
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 100/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 Raul vuelve de Rosario hacia Pehuajo (llega en 2 h).
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 100/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Hay un camionero disponible para tu flete!
+
+🚛 Raul vuelve de Rosario hacia Pehuajo (llega en 2 h).
+
+Tu pedido: 28 tn de soja, Carlos Casares → Rosario
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Encontré carga para tu retorno!
+
+🌾 Maria de Carlos Casares necesita mover 28 tn de soja a Rosario
+
+Score de compatibilidad: 100/100
+
+¿Lo tomás? Respondé "sí" o "no".
+2026-02-14 18:43:44 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "Sí, dale"
+2026-02-14 18:43:44 [INFO] 🤖 Respuesta AI: "..."
+2026-02-14 18:43:44 [INFO] ⚡ Acción detectada: CONFIRMAR_MATCH
+2026-02-14 18:43:44 [INFO] ✅ Match confirmado: Match ID 8 (Camionero: Raul, Productor: Maria)
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎉 *¡Excelente! Match confirmado.* 🎉
+
+Acá tenés los datos para contactarlo:
+👤 *Maria*
+📱 *5492396550002*
+📍 Carlos Casares
+
+¡Escribile ahora para coordinar! 🤝
+2026-02-14 18:43:44 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎉 *¡Buenas noticias! Se confirmó el viaje.* 🎉
+
+El usuario *Raul* aceptó la propuesta.
+
+Datos de contacto:
+👤 *Raul*
+📱 *5492396550001*
+📍 Pehuajo
+
+¡Contáctense para coordinar la carga! 🚛
+2026-02-14 18:44:21 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "hola"
+2026-02-14 18:44:21 [INFO] 🤖 Respuesta AI: "Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 hora..."
+2026-02-14 18:44:21 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: Hola Raul! No entendí bien tu mensaje. 🤔
+
+Podés decirme cosas como:
+🚛 "Vuelvo de Rosario en 2 horas"
+🌾 "Necesito flete para 30 tn de soja a Rosario"
+📋 "¿Qué hay disponible?"
+
+O escribí "ayuda" para más info.
+2026-02-14 18:44:28 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "vuelvo de salta mañana"
+2026-02-14 18:44:28 [INFO] 🤖 Respuesta AI: "🚛 ¡Registrado, Raul! Retorno vacío: salta → Pehuajo.
+
+Estoy buscando si alguien necesita flete en t..."
+2026-02-14 18:44:28 [INFO] ⚡ Acción detectada: RETORNO_VACIO
+2026-02-14 18:44:28 [INFO] 🔄 Retorno vacío registrado: salta → Pehuajo
+2026-02-14 18:44:28 [WARN] No se pudo geolocalizar retorno: salta → Pehuajo
+2026-02-14 18:44:28 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🚛 ¡Registrado, Raul! Retorno vacío: salta → Pehuajo.
+
+Estoy buscando si alguien necesita flete en tu ruta. Te aviso enseguida si encuentro algo. ✅
+2026-02-14 18:44:45 [INFO] 🔄 Procesando mensaje de 5492396550002 (web): "necesito flete de rosario a pehuajo"
+2026-02-14 18:44:45 [INFO] 🤖 Respuesta AI: "🌾 ¡Anotado, Maria! Pedido de flete, Carlos Casares → a confirmar.
+
+Te aviso cuando haya un camioner..."
+2026-02-14 18:44:45 [INFO] ⚡ Acción detectada: PEDIDO_FLETE
+2026-02-14 18:44:45 [INFO] 📦 Pedido de flete registrado: Carlos Casares → a confirmar
+2026-02-14 18:44:45 [INFO] 🎯 MATCH! Productor Maria ↔ Camionero Raul (score: 65)
+2026-02-14 18:44:45 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🌾 ¡Anotado, Maria! Pedido de flete, Carlos Casares → a confirmar.
+
+Te aviso cuando haya un camionero disponible en esa ruta. ✅
+
+📋 Me faltaría saber:
+• ¿Qué cereal?
+• ¿Cuántas toneladas?
+• ¿A qué puerto/destino?
+2026-02-14 18:44:45 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎯 ¡Hay carga para tu retorno vacío!
+
+🌾 Maria de Carlos Casares necesita mover cereal a a confirmar
+
+¿Te interesa? Respondé "sí" o "no".
+2026-02-14 18:44:45 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎯 ¡Encontré un camionero!
+
+🚛 Raul viene de Rosario hacia Pehuajo
+
+Score de compatibilidad: 65/100
+
+Te aviso cuando confirme. ✅
+2026-02-14 18:44:55 [INFO] 🔄 Procesando mensaje de 5492396550001 (web): "si"
+2026-02-14 18:44:55 [INFO] 🤖 Respuesta AI: "..."
+2026-02-14 18:44:55 [INFO] ⚡ Acción detectada: CONFIRMAR_MATCH
+2026-02-14 18:44:55 [INFO] ✅ Match confirmado: Match ID 12 (Camionero: Raul, Productor: Maria)
+2026-02-14 18:44:55 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 
+2026-02-14 18:44:55 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550001: 🎉 *¡Excelente! Match confirmado.* 🎉
+
+Acá tenés los datos para contactarlo:
+👤 *Maria*
+📱 *5492396550002*
+📍 Carlos Casares
+
+¡Escribile ahora para coordinar! 🤝
+2026-02-14 18:44:55 [INFO] 📤 [SIMULACIÓN] Mensaje a 5492396550002: 🎉 *¡Buenas noticias! Se confirmó el viaje.* 🎉
+
+El usuario *Raul* aceptó la propuesta.
+
+Datos de contacto:
+👤 *Raul*
+📱 *5492396550001*
+📍 Pehuajo
+
+¡Contáctense para coordinar la carga! 🚛
+2026-02-14 21:29:12 [INFO] ═══════════════════════════════════════════════
+2026-02-14 21:29:12 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 21:29:12 [INFO] 📋 Modo: simulation
+2026-02-14 21:29:12 [INFO] ═══════════════════════════════════════════════
+2026-02-14 21:29:12 [INFO] ✅ Base de datos inicializada
+2026-02-14 21:29:12 [INFO] 🤖 Modo simulación: usando AI local (sin API key)
+2026-02-14 21:29:12 [INFO] 🌐 Servidor corriendo en http://localhost:3000
+2026-02-14 21:29:12 [INFO] 💬 Dashboard: http://localhost:3000
+2026-02-14 21:29:12 [INFO] 
+2026-02-14 21:29:12 [INFO] ╔══════════════════════════════════════════════╗
+2026-02-14 21:29:12 [INFO] ║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║
+2026-02-14 21:29:12 [INFO] ║  Abrí http://localhost:3000 en tu browser  ║
+2026-02-14 21:29:12 [INFO] ║  No necesitás API keys ni WhatsApp           ║
+2026-02-14 21:29:12 [INFO] ╚══════════════════════════════════════════════╝
+2026-02-14 22:49:37 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:49:37 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 22:49:37 [INFO] 📋 Modo: production
+2026-02-14 22:49:37 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:49:37 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:49:37 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 22:49:37 [INFO] 📋 Modo: production
+2026-02-14 22:49:37 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:49:37 [ERROR] ❌ Error fatal al iniciar: getaddrinfo ENOTFOUND db.zpeuvidnwpyextybuvvr.supabase.co {"errno":-3008,"code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"db.zpeuvidnwpyextybuvvr.supabase.co","stack":"Error: getaddrinfo ENOTFOUND db.zpeuvidnwpyextybuvvr.supabase.co\n    at C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async initTables (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\db\\database.js:32:20)\n    at async startServer (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\index.js:35:9)"}
+2026-02-14 22:49:37 [ERROR] ❌ Error fatal al iniciar: getaddrinfo ENOTFOUND db.zpeuvidnwpyextybuvvr.supabase.co {"errno":-3008,"code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"db.zpeuvidnwpyextybuvvr.supabase.co","stack":"Error: getaddrinfo ENOTFOUND db.zpeuvidnwpyextybuvvr.supabase.co\n    at C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async initTables (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\db\\database.js:32:20)\n    at async startServer (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\index.js:35:9)"}
+2026-02-14 22:49:41 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:49:41 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 22:49:41 [INFO] 📋 Modo: production
+2026-02-14 22:49:41 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:49:43 [ERROR] ❌ Error fatal al iniciar: getaddrinfo ENOTFOUND db.zpeuvidnwpyextybuvvr.supabase.co {"errno":-3008,"code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"db.zpeuvidnwpyextybuvvr.supabase.co","stack":"Error: getaddrinfo ENOTFOUND db.zpeuvidnwpyextybuvvr.supabase.co\n    at C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async initTables (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\db\\database.js:32:20)\n    at async startServer (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\index.js:35:9)"}
+2026-02-14 22:54:48 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:54:48 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 22:54:48 [INFO] 📋 Modo: production
+2026-02-14 22:54:48 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:55:03 [ERROR] ❌ Error fatal al iniciar: Tenant or user not found {"length":52,"name":"error","severity":"FATAL","code":"XX000","stack":"error: Tenant or user not found\n    at C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async initTables (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\db\\database.js:32:20)\n    at async startServer (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\index.js:35:9)"}
+2026-02-14 22:55:21 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:55:21 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 22:55:21 [INFO] 📋 Modo: production
+2026-02-14 22:55:21 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:55:22 [ERROR] ❌ Error fatal al iniciar: Tenant or user not found {"length":52,"name":"error","severity":"FATAL","code":"XX000","stack":"error: Tenant or user not found\n    at C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async initTables (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\db\\database.js:32:20)\n    at async startServer (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\index.js:35:9)"}
+2026-02-14 22:55:37 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:55:37 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 22:55:37 [INFO] 📋 Modo: production
+2026-02-14 22:55:37 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:55:39 [ERROR] ❌ Error fatal al iniciar: password authentication failed for user "postgres" {"length":78,"name":"error","severity":"FATAL","code":"28P01","stack":"error: password authentication failed for user \"postgres\"\n    at C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async initTables (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\db\\database.js:32:20)\n    at async startServer (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\index.js:35:9)"}
+2026-02-14 22:58:35 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:58:35 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 22:58:35 [INFO] 📋 Modo: production
+2026-02-14 22:58:35 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:58:37 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 22:58:37 [INFO] 📦 Base de datos inicializada
+2026-02-14 22:58:37 [INFO] 🤖 Kimi 2.5 API (NVIDIA NIM) inicializado
+2026-02-14 22:58:37 [INFO] 🧠 Kimi AI inicializado
+2026-02-14 22:58:37 [INFO] 📱 Conectando a WhatsApp...
+2026-02-14 22:58:37 [INFO] 🌐 Rutas API cargadas
+2026-02-14 22:58:37 [INFO] 🚀 Servidor corriendo en http://localhost:3000
+2026-02-14 22:58:37 [INFO] 📊 Dashboard disponible en http://localhost:3000/dashboard.html
+2026-02-14 22:58:42 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 22:58:57 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:58:57 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 22:58:57 [INFO] 📋 Modo: production
+2026-02-14 22:58:57 [INFO] ═══════════════════════════════════════════════
+2026-02-14 22:58:59 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 22:58:59 [INFO] 📦 Base de datos inicializada
+2026-02-14 22:58:59 [INFO] 🤖 Kimi 2.5 API (NVIDIA NIM) inicializado
+2026-02-14 22:58:59 [INFO] 🧠 Kimi AI inicializado
+2026-02-14 22:58:59 [INFO] 📱 Conectando a WhatsApp...
+2026-02-14 22:58:59 [INFO] 🌐 Rutas API cargadas
+2026-02-14 22:58:59 [INFO] 🚀 Servidor corriendo en http://localhost:3000
+2026-02-14 22:58:59 [INFO] 📊 Dashboard disponible en http://localhost:3000/dashboard.html
+2026-02-14 22:59:01 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:00:01 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:00:06 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:00:06 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 23:00:06 [INFO] 📋 Modo: production
+2026-02-14 23:00:06 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:00:08 [ERROR] ❌ Error fatal al iniciar: password authentication failed for user "postgres" {"length":78,"name":"error","severity":"FATAL","code":"28P01","stack":"error: password authentication failed for user \"postgres\"\n    at C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\node_modules\\pg-pool\\index.js:45:11\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async initTables (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\db\\database.js:32:20)\n    at async startServer (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\index.js:35:9)"}
+2026-02-14 23:00:21 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:00:41 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:01:01 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:01:21 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:01:30 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:01:30 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 23:01:30 [INFO] 📋 Modo: production
+2026-02-14 23:01:30 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:01:30 [INFO] 🔌 Intentando conectar a PostgreSQL: aws-1-us-east-2.pooler.supabase.com:6543 as postgres.zpeuvidnwpyextybuvvr
+2026-02-14 23:01:32 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 23:01:41 [WARN] ❌ Conexión cerrada. Reconectando:
+2026-02-14 23:01:54 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:02:11 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:02:11 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 23:02:11 [INFO] 📋 Modo: production
+2026-02-14 23:02:11 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:02:11 [INFO] 🔌 Intentando conectar a PostgreSQL: aws-1-us-east-2.pooler.supabase.com:6543 as postgres.zpeuvidnwpyextybuvvr
+2026-02-14 23:02:43 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 23:02:55 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:03:15 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:03:29 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:03:29 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 23:03:29 [INFO] 📋 Modo: production
+2026-02-14 23:03:29 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:03:29 [INFO] 🔌 Intentando conectar a PostgreSQL: aws-1-us-east-2.pooler.supabase.com:6543 as postgres.zpeuvidnwpyextybuvvr
+2026-02-14 23:03:31 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 23:03:31 [INFO] 📦 Base de datos inicializada
+2026-02-14 23:03:31 [INFO] 🤖 Kimi 2.5 API (NVIDIA NIM) inicializado
+2026-02-14 23:03:31 [INFO] 🧠 Kimi AI inicializado
+2026-02-14 23:03:31 [INFO] 📱 Conectando a WhatsApp...
+2026-02-14 23:03:31 [INFO] 🌐 Rutas API cargadas
+2026-02-14 23:03:31 [INFO] 🚀 Servidor corriendo en http://localhost:3000
+2026-02-14 23:03:31 [INFO] 📊 Dashboard disponible en http://localhost:3000/dashboard.html
+2026-02-14 23:03:32 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:04:32 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:04:52 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:05:01 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:05:01 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 23:05:01 [INFO] 📋 Modo: production
+2026-02-14 23:05:01 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:05:01 [INFO] 🔌 Intentando conectar a PostgreSQL: aws-1-us-east-2.pooler.supabase.com:6543 as postgres.zpeuvidnwpyextybuvvr
+2026-02-14 23:05:04 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 23:05:13 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:05:33 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:05:53 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:07:55 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:07:55 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 23:07:55 [INFO] 📋 Modo: production
+2026-02-14 23:07:55 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:07:55 [INFO] 🔌 Intentando conectar a PostgreSQL: aws-1-us-east-2.pooler.supabase.com:6543 as postgres.zpeuvidnwpyextybuvvr
+2026-02-14 23:07:58 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 23:07:58 [INFO] 📦 Base de datos inicializada
+2026-02-14 23:07:58 [INFO] 🤖 Kimi 2.5 API (NVIDIA NIM) inicializado
+2026-02-14 23:07:58 [INFO] 🧠 Kimi AI inicializado
+2026-02-14 23:07:58 [INFO] 📱 Conectando a WhatsApp...
+2026-02-14 23:07:58 [INFO] 🌐 Rutas API cargadas
+2026-02-14 23:07:58 [INFO] 🚀 Servidor corriendo en http://localhost:3000
+2026-02-14 23:07:58 [INFO] 📊 Dashboard disponible en http://localhost:3000/dashboard.html
+2026-02-14 23:08:01 [INFO] 📲 Escaneá este QR con tu celular para conectar el bot:
+2026-02-14 23:08:45 [WARN] ❌ Conexión cerrada. Reconectando:
+2026-02-14 23:08:53 [INFO] ✅ Conexión establecida con WhatsApp!
+2026-02-14 23:11:36 [INFO] 📩 Nuevo mensaje de Tomy (120363403465375638): Jajaja
+2026-02-14 23:11:36 [INFO] 🔄 Procesando mensaje de 120363403465375638 (whatsapp_baileys): "Jajaja"
+2026-02-14 23:12:18 [INFO] 🤖 Respuesta AI: " ¡Jaja! ¿Qué tal? ¿En qué te puedo dar una mano hoy? 🚛🌾
+
+¿Necesitás registrar un viaje, avisar un ..."
+2026-02-14 23:15:19 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:15:19 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 23:15:19 [INFO] 📋 Modo: production
+2026-02-14 23:15:19 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:15:19 [INFO] 🔌 Intentando conectar a PostgreSQL: aws-1-us-east-2.pooler.supabase.com:6543 as postgres.zpeuvidnwpyextybuvvr
+2026-02-14 23:15:22 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 23:15:22 [INFO] 📦 Base de datos inicializada
+2026-02-14 23:15:22 [INFO] 🤖 Kimi 2.5 API (NVIDIA NIM) inicializado
+2026-02-14 23:15:22 [INFO] 🧠 Kimi AI inicializado
+2026-02-14 23:15:22 [INFO] 📱 Conectando a WhatsApp...
+2026-02-14 23:15:22 [INFO] 🌐 Rutas API cargadas
+2026-02-14 23:15:22 [INFO] 🚀 Servidor corriendo en http://localhost:3000
+2026-02-14 23:15:22 [INFO] 📊 Dashboard disponible en http://localhost:3000/dashboard.html
+2026-02-14 23:15:26 [INFO] ✅ Conexión establecida con WhatsApp!
+2026-02-14 23:18:15 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Que buscas viajes y después que volver a pehuajo
+2026-02-14 23:18:15 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Que buscas viajes y después que volver a pehuajo"
+2026-02-14 23:18:41 [INFO] 🤖 Respuesta AI: " ¡Hola! 🚛
+
+Así funciona:
+• Si sos **camionero**: avisame cuando vuelvas vacío de un puerto (Bahía B..."
+2026-02-14 23:19:26 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Reencribime el msj que queres que mande
+2026-02-14 23:19:26 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Reencribime el msj que queres que mande"
+2026-02-14 23:20:07 [INFO] 🤖 Respuesta AI: " ¿Te referís a un mensaje para invitar a otros camioneros o productores a sumarse al bot? 
+
+Acá te v..."
+2026-02-14 23:20:21 [INFO] 📩 Nuevo mensaje de Miru 🪄🙌🏻 (status): Las amoo feliz día .
+2026-02-14 23:20:21 [INFO] 🔄 Procesando mensaje de status (whatsapp_baileys): "Las amoo feliz día ."
+2026-02-14 23:20:51 [INFO] 🤖 Respuesta AI: " ¡Gracias! 🌾 Igualmente. 
+
+Soy FletesCerealeros Bot. ¿Necesitás registrar un retorno vacío, pedir u..."
+2026-02-14 23:21:10 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Estoy buscando un camión vacío de pehuajo a bahía
+2026-02-14 23:21:10 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Estoy buscando un camión vacío de pehuajo a bahía"
+2026-02-14 23:21:31 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Necesito llevar penes de gomas para un amigo mio, Javier se llama
+2026-02-14 23:21:31 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Necesito llevar penes de gomas para un amigo mio, Javier se llama"
+2026-02-14 23:21:54 [ERROR] Error procesando mensaje con AI: Cannot read properties of null (reading 'match') {"stack":"TypeError: Cannot read properties of null (reading 'match')\n    at processMessage (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\ai\\kimi.js:233:44)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async handleIncomingMessage (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\handler\\conversation.js:26:22)\n    at async EventEmitter.<anonymous> (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\whatsapp\\client.js:59:30)"}
+2026-02-14 23:21:54 [INFO] 🤖 Respuesta AI: "⚠️ Tuve un problema procesando tu mensaje. Intentá de nuevo en unos segundos...."
+2026-02-14 23:22:13 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Flojito el creador che
+2026-02-14 23:22:13 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Flojito el creador che"
+2026-02-14 23:22:43 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:22:43 [INFO] 🚛 FletesCerealeros - Iniciando servidor...
+2026-02-14 23:22:43 [INFO] 📋 Modo: production
+2026-02-14 23:22:43 [INFO] ═══════════════════════════════════════════════
+2026-02-14 23:22:43 [INFO] 🔌 Intentando conectar a PostgreSQL: aws-1-us-east-2.pooler.supabase.com:6543 as postgres.zpeuvidnwpyextybuvvr
+2026-02-14 23:22:45 [INFO] ✅ Tablas PostgreSQL verificadas/creadas
+2026-02-14 23:22:45 [INFO] 📦 Base de datos inicializada
+2026-02-14 23:22:45 [INFO] 🤖 Kimi 2.5 API (NVIDIA NIM) inicializado
+2026-02-14 23:22:45 [INFO] 🧠 Kimi AI inicializado
+2026-02-14 23:22:45 [INFO] 📱 Conectando a WhatsApp...
+2026-02-14 23:22:45 [INFO] 🌐 Rutas API cargadas
+2026-02-14 23:22:45 [INFO] 🚀 Servidor corriendo en http://localhost:3000
+2026-02-14 23:22:45 [INFO] 📊 Dashboard disponible en http://localhost:3000/dashboard.html
+2026-02-14 23:22:48 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Ta tremendopolis
+2026-02-14 23:22:48 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Ta tremendopolis"
+2026-02-14 23:22:48 [INFO] ✅ Conexión establecida con WhatsApp!
+2026-02-14 23:23:00 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Me imagino
+2026-02-14 23:23:00 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Me imagino"
+2026-02-14 23:23:13 [INFO] 🤖 Respuesta AI: " Jaja, me recontra colgué 😅
+
+¿Necesitás el flete Pehuajó → Bahía Blanca? Decime qué carga llevás y ..."
+2026-02-14 23:23:19 [INFO] 🤖 Respuesta AI: " Jajaja, me agarraste en offside con el error ese 😅
+
+Pero che, volviendo a lo tuyo: ¿querés registr..."
+2026-02-14 23:24:05 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Nose si estoy hablando con Javier o termineitor
+2026-02-14 23:24:05 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Nose si estoy hablando con Javier o termineitor"
+2026-02-14 23:24:10 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Y si payaso
+2026-02-14 23:24:10 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Y si payaso"
+2026-02-14 23:24:27 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): En casa
+2026-02-14 23:24:27 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "En casa"
+2026-02-14 23:24:37 [INFO] 🤖 Respuesta AI: " Jajaja, y si... camionero 🚛😅
+
+Soy el bot de los fletes che, no Terminator. ¿Me cargamos ese pedid..."
+2026-02-14 23:24:41 [INFO] 🤖 Respuesta AI: " Jajaja, me tenés de payaso entonces 😂
+
+Volvamos a lo nuestro: ¿necesitás el flete **Pehuajó → Bahí..."
+2026-02-14 23:24:45 [INFO] 📩 Nuevo mensaje de Jonathan (198659417350246): Si quieren hacemos algo tranki y me voy a dormir porque si nos ponemos a esperar a las negras la hacen re larga
+2026-02-14 23:24:45 [INFO] 🔄 Procesando mensaje de 198659417350246 (whatsapp_baileys): "Si quieren hacemos algo tranki y me voy a dormir porque si nos ponemos a esperar a las negras la hacen re larga"
+2026-02-14 23:24:57 [INFO] 🤖 Respuesta AI: " Jajaja, dale, haceme la gauchada y registrame el flete antes de dormir 😴
+
+¿Es **Pehuajó → Bahía Bl..."
+2026-02-14 23:25:06 [WARN] ❌ Conexión cerrada. Reconectando:
+2026-02-14 23:25:06 [INFO] 🤖 Respuesta AI: " Soy el bot de FletesCerealeros, ni Javier ni Terminator 😂 
+
+Volviendo al flete: ¿querés registrar ..."
+2026-02-14 23:25:07 [ERROR] Error procesando mensaje de WhatsApp: Connection Closed {"data":null,"isBoom":true,"isServer":false,"output":{"statusCode":428,"payload":{"statusCode":428,"error":"Precondition Required","message":"Connection Closed"},"headers":{}},"stack":"Error: Connection Closed\n    at sendRawMessage (file:///C:/Users/Javi/.gemini/antigravity/scratch/fletes-cerealeros/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:50:19)\n    at sendNode (file:///C:/Users/Javi/.gemini/antigravity/scratch/fletes-cerealeros/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:69:16)\n    at Object.presenceSubscribe (file:///C:/Users/Javi/.gemini/antigravity/scratch/fletes-cerealeros/node_modules/@whiskeysockets/baileys/lib/Socket/chats.js:530:51)\n    at sendMessage (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\whatsapp\\client.js:89:16)\n    at EventEmitter.<anonymous> (C:\\Users\\Javi\\.gemini\\antigravity\\scratch\\fletes-cerealeros\\src\\whatsapp\\client.js:68:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}

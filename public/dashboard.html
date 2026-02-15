@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fletea - Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .list-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .tag {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+
+        .tag-camionero {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .tag-productor {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .tag-match {
+            background: #fff3e0;
+            color: #f57c00;
+            font-weight: bold;
+        }
+
+        #logs {
+            font-family: monospace;
+            background: #333;
+            color: #0f0;
+            padding: 10px;
+            height: 200px;
+            overflow-y: scroll;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🚛 Fletea Dashboard</h1>
+
+        <div class="card" style="margin-bottom: 20px;">
+            <h2>Estadísticas en Vivo</h2>
+            <div class="grid" id="stats">
+                <div>Usuarios: <span id="stat-users" class="stat-value">0</span></div>
+                <div>Viajes Activos: <span id="stat-trips" class="stat-value">0</span></div>
+                <div>Matches: <span id="stat-matches" class="stat-value">0</span></div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Últimos Matches</h2>
+                <div id="matches-list">Cargando...</div>
+            </div>
+            <div class="card">
+                <h2>Chat Reciente</h2>
+                <input type="text" id="phone-filter" placeholder="Celular (ej. 549...)"
+                    style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                <button onclick="loadChat()">Ver Chat</button>
+                <div id="chat-history" style="margin-top: 10px; max-height: 300px; overflow-y: auto;"></div>
+            </div>
+            <div class="card">
+                <h2>Usuarios Registrados</h2>
+                <div id="users-list" style="max-height: 300px; overflow-y: auto;">Cargando...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchAPI(endpoint) {
+            try {
+                const res = await fetch(`/api${endpoint}`);
+                if (!res.ok) throw new Error(`Error ${res.status}`);
+                return await res.json();
+            } catch (e) {
+                console.error(e);
+                return null;
+            }
+        }
+
+        async function updateDashboard() {
+            // Stats
+            const stats = await fetchAPI('/stats');
+            if (stats) {
+                document.getElementById('stat-users').innerText = stats.totalUsers || 0;
+                document.getElementById('stat-trips').innerText = stats.activeTrips || 0;
+                document.getElementById('stat-matches').innerText = stats.matchesRealizados || 0;
+            }
+
+            // Matches
+            const matches = await fetchAPI('/matches');
+            const matchesList = document.getElementById('matches-list');
+            matchesList.innerHTML = '';
+            if (matches && matches.length > 0) {
+                matches.forEach(m => {
+                    const div = document.createElement('div');
+                    div.className = 'list-item';
+                    div.innerHTML = `
+                        <span class="tag tag-match">${m.status.toUpperCase()}</span><br>
+                        🚛 <b>${m.camionero_name}</b> (${m.camionero_locality})<br>
+                        🌾 <b>${m.productor_name}</b> (${m.productor_locality})<br>
+                        Score: ${Math.round(m.score)}%
+                    `;
+                    matchesList.appendChild(div);
+                });
+            } else {
+                matchesList.innerHTML = 'No hay matches activos.';
+            }
+
+            // Users
+            const users = await fetchAPI('/users');
+            const usersList = document.getElementById('users-list');
+            usersList.innerHTML = '';
+            if (users && users.length > 0) {
+                users.forEach(u => {
+                    const div = document.createElement('div');
+                    div.className = 'list-item';
+                    const tagClass = u.type === 'camionero' ? 'tag-camionero' : 'tag-productor';
+                    div.innerHTML = `
+                        <span class="tag ${tagClass}">${u.type}</span> <b>${u.name || 'Sin Nombre'}</b><br>
+                        📱 ${u.phone} <br>
+                        📍 ${u.locality || '-'}
+                    `;
+                    usersList.appendChild(div);
+                });
+            } else {
+                usersList.innerHTML = 'No hay usuarios registrados.';
+            }
+        }
+
+        async function loadChat() {
+            const phone = document.getElementById('phone-filter').value;
+            if (!phone) return;
+            const history = await fetchAPI(`/conversations/${phone}`);
+            const chatDiv = document.getElementById('chat-history');
+            chatDiv.innerHTML = '';
+            if (history && history.length > 0) {
+                history.forEach(msg => {
+                    const div = document.createElement('div');
+                    div.style.marginBottom = '8px';
+                    div.style.padding = '5px';
+                    div.style.borderRadius = '4px';
+                    div.style.background = msg.role === 'user' ? '#fff' : '#e3f2fd';
+                    div.innerHTML = `<b>${msg.role}:</b> ${msg.content}`;
+                    chatDiv.appendChild(div);
+                });
+            } else {
+                chatDiv.innerHTML = 'Sin historial.';
+            }
+        }
+
+        // Auto-update stats every 5s
+        updateDashboard();
+        setInterval(updateDashboard, 5000);
+    </script>
+</body>
+
+</html>
