@@ -78,24 +78,42 @@ async function startServer() {
             }
         });
 
+        // 8. Health Check
+        app.get('/api/health', (req, res) => {
+            res.json({
+                status: 'ok',
+                database: require('./db/database').isConnected() ? 'connected' : 'disconnected',
+                ai: !!process.env.KIMI_API_KEY ? 'online' : 'simulation',
+                version: '1.1.0'
+            });
+        });
+
         // 8. Iniciar Servidor Express
-        app.listen(PORT, () => {
-            logger.info(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-            logger.info(`📊 Dashboard disponible en http://localhost:${PORT}/dashboard.html`);
+        const server = app.listen(PORT, '0.0.0.0', () => {
+            logger.info('═══════════════════════════════════════════════');
+            logger.info(`🚀 Servidor FLETEA corriendo en puerto ${PORT}`);
+            logger.info(`🌐 Host: 0.0.0.0`);
+            logger.info(`📊 Dashboard: http://localhost:${PORT}/dashboard.html`);
+            logger.info('═══════════════════════════════════════════════');
 
             if (MODE === 'simulation') {
-                logger.info('');
-                logger.info('╔══════════════════════════════════════════════╗');
-                logger.info('║  🎮 MODO SIMULACIÓN - ¡Probalo gratis!      ║');
-                logger.info('║  Abrí http://localhost:' + PORT + ' en tu browser  ║');
-                logger.info('║  No necesitás API keys ni WhatsApp           ║');
-                logger.info('╚══════════════════════════════════════════════╝');
+                logger.info('🎮 MODO SIMULACIÓN ACTIVADO');
+            }
+        });
+
+        server.on('error', (err) => {
+            if (err.code === 'EADDRINUSE') {
+                logger.error(`❌ Puerto ${PORT} ocupado. Cerrando.`);
+                process.exit(1);
+            } else {
+                logger.error('❌ Error en servidor Express:', err);
             }
         });
 
     } catch (error) {
-        logger.error('❌ Error fatal al iniciar:', error);
-        process.exit(1);
+        logger.error('❌ ERROR FATAL DURANTE EL ARRANQUE:', error);
+        // Intentar mantener el proceso vivo unos segundos para que el usuario vea el log
+        setTimeout(() => process.exit(1), 5000);
     }
 }
 

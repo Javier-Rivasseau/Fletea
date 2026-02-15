@@ -83,7 +83,12 @@
 
 <body>
     <div class="container">
-        <h1>🚛 Fletea Dashboard</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>🚛 Fletea Dashboard</h1>
+            <div id="health-badge"
+                style="padding: 5px 10px; border-radius: 20px; font-size: 0.8em; background: #95a5a6; color: white;">
+                Cargando estado...</div>
+        </div>
 
         <div class="card" style="margin-bottom: 20px;">
             <h2>Estadísticas en Vivo</h2>
@@ -100,24 +105,27 @@
                 <div id="matches-list">Cargando...</div>
             </div>
             <div class="card">
-                <h2>Chat Reciente</h2>
-                <input type="text" id="phone-filter" placeholder="Celular (ej. 549...)"
-                    style="width: 100%; padding: 8px; margin-bottom: 10px;">
-                <button onclick="loadChat()">Ver Chat</button>
-                <div id="chat-history" style="margin-top: 10px; max-height: 300px; overflow-y: auto;"></div>
+                <h2>🔍 Historial de Chat</h2>
+                <p style="font-size: 0.8em; color: #666;">Ingresá un número de celular para ver sus mensajes.</p>
+                <input type="text" id="phone-filter" placeholder="Celular (ej. 54911...)"
+                    style="width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box;">
+                <button id="btn-load-chat" onclick="loadChat()" style="width: 100%; padding: 10px; cursor: pointer;">Ver
+                    Historial</button>
+                <div id="chat-history"
+                    style="margin-top: 10px; max-height: 250px; overflow-y: auto; border-top: 1px solid #eee;"></div>
             </div>
 
-            <div class="card">
-                <h2>🎮 Simulador Web</h2>
-                <p style="font-size: 0.9em; color: #666;">Probá la lógica del bot sin usar WhatsApp.</p>
+            <div class="card" style="border: 2px solid #2ecc71;">
+                <h2>🎮 Simulador de Bot</h2>
+                <p style="font-size: 0.8em; color: #666;">Chateá acá para probar al bot <b>sin WhatsApp</b>.</p>
                 <div id="sim-chat"
-                    style="height: 200px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; background: #fff;">
+                    style="height: 200px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; background: #f9f9f9; border-radius: 4px;">
                 </div>
                 <div style="display: flex; gap: 5px;">
-                    <input type="text" id="sim-input" placeholder="Escribí tu mensaje..."
-                        style="flex: 1; padding: 8px;">
-                    <button onclick="sendSimMessage()"
-                        style="padding: 8px 16px; background: #2ecc71; color: white; border: none; cursor: pointer;">Enviar</button>
+                    <input type="text" id="sim-input" placeholder="Escribí 'hola'..." style="flex: 1; padding: 8px;"
+                        onkeypress="if(event.key==='Enter') sendSimMessage()">
+                    <button id="btn-send-sim" onclick="sendSimMessage()"
+                        style="padding: 8px 16px; background: #2ecc71; color: white; border: none; cursor: pointer; border-radius: 4px;">Enviar</button>
                 </div>
             </div>
 
@@ -140,7 +148,19 @@
             }
         }
 
+        async function updateHealth() {
+            const health = await fetchAPI('/health');
+            const badge = document.getElementById('health-badge');
+            if (health) {
+                const dbStatus = health.database === 'connected' ? '🟢 DB' : '🔴 DB Offline';
+                const aiStatus = health.ai === 'online' ? '🤖 AI' : '👤 Sim AI';
+                badge.innerHTML = `${dbStatus} | ${aiStatus}`;
+                badge.style.background = health.database === 'connected' ? '#2ecc71' : '#e74c3c';
+            }
+        }
+
         async function updateDashboard() {
+            updateHealth();
             // Stats
             const stats = await fetchAPI('/stats');
             if (stats) {

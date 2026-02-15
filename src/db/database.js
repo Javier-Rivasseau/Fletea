@@ -10,42 +10,42 @@ function initDatabase() {
     const connectionString = process.env.DATABASE_URL;
 
     if (!connectionString) {
-        logger.warn('⚠️ No DATABASE_URL found. Using in-memory mode (data will be lost on restart).');
+        logger.warn('⚠️ No DATABASE_URL found. Running in simulation mode (no persistent database).');
         return;
     }
 
-    // Force parsing to debug/ensure correct values
     try {
-        const url = new URL(connectionString);
-        pool = new Pool({
-            user: url.username,
-            password: url.password,
-            host: url.hostname,
-            port: url.port,
-            database: url.pathname.split('/')[1],
-            ssl: { rejectUnauthorized: false }
-        });
-        logger.info(`🔌 Intentando conectar a PostgreSQL: ${url.hostname}:${url.port} as ${url.username}`);
-    } catch (e) {
-        logger.error('Error parseando DATABASE_URL:', e);
-        // Fallback to auto-parsing if URL fails
+        // Try to parse as connection string directly first (recommended for PG Pool)
         pool = new Pool({
             connectionString,
-            ssl: { rejectUnauthorized: false }
+            ssl: {
+                rejectUnauthorized: false // Required for Supabase/Neon/Render
+            },
+            max: 20,
+            idleTimeoutMillis: 30000,
+            connectionTimeoutMillis: 10000,
         });
+
+        logger.info('🔌 Pool de PostgreSQL configurado');
+    } catch (e) {
+        logger.error('❌ Error fatal configurando pool de PostgreSQL:', e.message);
+        throw e;
     }
 
     pool.on('error', (err) => {
-        logger.error('Unexpected error on idle client', err);
-        process.exit(-1);
+        logger.error('Unexpected error on idle PostgreSQL client', err);
     });
 
     return initTables();
 }
 
 async function initTables() {
-    const client = await pool.connect();
+    if (!pool) return;
+
+    let client;
     try {
+        client = await pool.connect();
+        logger.info('🛰️ Conectado a PostgreSQL exitosamente');
         await client.query(`
             CREATE TABLE IF NOT EXISTS users (
                 id SERIAL PRIMARY KEY,
@@ -147,8 +147,17 @@ async function deleteAuthKey(category, keyId) {
 }
 
 function getPool() {
-    if (!pool) initDatabase();
+    if (!pool) {
+        initDatabase();
+    }
+    if (!pool) {
+        throw new Error('No hay conexión a la base de datos PostgreSQL. Configurá DATABASE_URL.');
+    }
     return pool;
+}
+
+function isConnected() {
+    return !!pool;
 }
 
 // ─── Helpers para consultas (Simulando API sincrona de better-sqlite3 donde sea posible con async/await) ───
@@ -367,4 +376,5 @@ module.exports = {
     saveAuthKey,
     getAuthKey,
     deleteAuthKey,
+    isConnected,
 };
