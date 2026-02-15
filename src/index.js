@@ -39,10 +39,12 @@ async function startServer() {
         initKimiClient();
         logger.info('🧠 Kimi AI inicializado');
 
-        // 3. Conectar a WhatsApp (Baileys) - Solo si no estamos en modo test puro
-        if (process.env.NODE_ENV !== 'test') {
+        // 3. Conectar a WhatsApp (Baileys) - Solo si está habilitado explícitamente
+        if (process.env.ENABLE_WHATSAPP === 'true') {
             connectToWhatsApp();
             logger.info('📱 Conectando a WhatsApp...');
+        } else {
+            logger.info('📱 WhatsApp desactivado (ENABLE_WHATSAPP !== true). Usando solo modo Web.');
         }
 
         // 4. Rutas API (Dashboard)
