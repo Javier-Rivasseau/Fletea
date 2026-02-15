@@ -128,7 +128,7 @@ async function saveAuthKey(category, keyId, value) {
         ON CONFLICT (category, key_id)
         DO UPDATE SET value = EXCLUDED.value
     `;
-    await getPool().query(query, [category, keyId, JSON.stringify(value)]);
+    await getPool().query(query, [category, keyId, value]);
 }
 
 async function getAuthKey(category, keyId) {
@@ -136,7 +136,7 @@ async function getAuthKey(category, keyId) {
         'SELECT value FROM baileys_auth WHERE category = $1 AND key_id = $2',
         [category, keyId]
     );
-    return res.rows[0] ? JSON.parse(res.rows[0].value) : null;
+    return res.rows[0] ? res.rows[0].value : null;
 }
 
 async function deleteAuthKey(category, keyId) {

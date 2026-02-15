@@ -85,7 +85,7 @@ async function startServer() {
             logger.info('═══════════════════════════════════════════════');
             logger.info(`🚀 Servidor FLETEA corriendo en puerto ${PORT}`);
             logger.info(`🌐 Host: 0.0.0.0`);
-            logger.info(`📊 Dashboard: http://localhost:${PORT}/dashboard.html`);
+            logger.info(`📊 Dashboard: http://localhost:${PORT}/`);
             logger.info('═══════════════════════════════════════════════');
 
             if (MODE === 'simulation') {

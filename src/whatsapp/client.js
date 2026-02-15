@@ -2,12 +2,12 @@ const qrcode = require('qrcode-terminal');
 const logger = require('../utils/logger');
 const { handleIncomingMessage } = require('../handler/conversation');
 
-// Helper para enviar mensajes (implementado más abajo con delay)
-// async function sendMessage(sock, jid, text) ...
+// Variables para exponer el estado y el QR a la API
+let currentQR = null;
+let connectionStatus = 'initializing';
+let pairingCode = null;
 
 async function connectToWhatsApp() {
-    // Dynamic import for ESM module
-    // Dynamic import for ESM module
     const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = await import('@whiskeysockets/baileys');
     const { usePostgresAuthState } = require('./auth-store-db');
 
@@ -31,7 +31,6 @@ async function connectToWhatsApp() {
         printQRInTerminal: !process.env.PHONE_NUMBER,
         auth: state,
         defaultQueryTimeoutMs: undefined,
-        // Configuración para evitar desconexiones frecuentes
         connectTimeoutMs: 60000,
         keepAliveIntervalMs: 10000,
     });
@@ -40,25 +39,23 @@ async function connectToWhatsApp() {
     const requestPairing = async () => {
         if (isPairingRequested || !process.env.PHONE_NUMBER || sock.authState.creds.registered) return;
 
-        const phoneNumber = process.env.PHONE_NUMBER.replace(/\D/g, ''); // Limpiar símbolos
+        const phoneNumber = process.env.PHONE_NUMBER.replace(/\D/g, '');
         isPairingRequested = true;
 
         logger.info(`📲 Solicitando código de vinculación para: ${phoneNumber}`);
         try {
-            // Esperar un momento a que el socket esté listo para pairing
             await new Promise(resolve => setTimeout(resolve, 5000));
             const code = await sock.requestPairingCode(phoneNumber);
+            pairingCode = code;
             logger.info('╔══════════════════════════════════════════════╗');
             logger.info(`║  TU CÓDIGO DE VINCULACIÓN: ${code}       ║`);
             logger.info('╚══════════════════════════════════════════════╝');
-            logger.info('Ingresalo en WhatsApp > Dispositivos vinculados > Vincular con código.');
         } catch (err) {
             logger.error('Error al solicitar pairing code:', err.message);
-            isPairingRequested = false; // Permitir reintento
+            isPairingRequested = false;
         }
     };
 
-    // Solo pedir pairing si no estamos registrados
     if (process.env.PHONE_NUMBER && !sock.authState.creds.registered) {
         requestPairing();
     }
@@ -67,22 +64,29 @@ async function connectToWhatsApp() {
         const { connection, lastDisconnect, qr } = update;
 
         if (qr && !process.env.PHONE_NUMBER) {
-            logger.info('📲 Escaneá este QR con tu celular para conectar el bot:');
+            currentQR = qr;
+            logger.info('📲 Nuevo QR generado. Disponible en el Dashboard.');
             qrcode.generate(qr, { small: true });
         }
 
         if (connection === 'close') {
+            connectionStatus = 'closed';
+            currentQR = null;
             const statusCode = lastDisconnect.error?.output?.statusCode;
             const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
 
             logger.warn(`❌ Conexión cerrada (Status: ${statusCode}). Reconectando: ${shouldReconnect}`);
 
             if (shouldReconnect) {
-                // Evitar reconexión inmediata explosiva
                 setTimeout(() => connectToWhatsApp(), 5000);
             }
         } else if (connection === 'open') {
+            connectionStatus = 'open';
+            currentQR = null;
+            pairingCode = null;
             logger.info('✅ Conexión establecida con WhatsApp!');
+        } else if (connection === 'connecting') {
+            connectionStatus = 'connecting';
         }
     });
 
@@ -96,16 +100,14 @@ async function connectToWhatsApp() {
             const phone = msg.key.remoteJid.split('@')[0];
             const name = msg.pushName || 'Usuario';
 
-            // Extraer texto de diferentes tipos de mensaje (texto simple o extendido)
             const text = msg.message.conversation ||
                 msg.message.extendedTextMessage?.text ||
                 msg.message.imageMessage?.caption;
 
-            if (!text) return; // Ignorar mensajes sin texto por ahora
+            if (!text) return;
 
             logger.info(`📩 Nuevo mensaje de ${name} (${phone}): ${text}`);
 
-            // Procesar el mensaje
             const response = await handleIncomingMessage({
                 phone,
                 text,
@@ -113,16 +115,12 @@ async function connectToWhatsApp() {
                 source: 'whatsapp_baileys'
             });
 
-            // Enviar respuesta(s)
             if (response.response) {
                 await sendMessage(sock, msg.key.remoteJid, response.response);
             }
 
-            // Enviar notificaciones adicionales (matches)
             if (response.matchNotifications && response.matchNotifications.length > 0) {
                 for (const notif of response.matchNotifications) {
-                    // Cuidado: notif.phone viene sin sufijo, hay que agregar @s.whatsapp.net
-                    // Además, Baileys requiere formato internacional sin +
                     const jid = notif.phone.includes('@') ? notif.phone : `${notif.phone}@s.whatsapp.net`;
                     await sendMessage(sock, jid, notif.text);
                 }
@@ -134,17 +132,26 @@ async function connectToWhatsApp() {
     });
 }
 
-// Helper para enviar mensajes con delay "humano"
 async function sendMessage(sock, jid, text) {
-    await sock.presenceSubscribe(jid);
-    await sock.sendPresenceUpdate('composing', jid);
-
-    // Simular tiempo de escritura (1s por cada 100 caracteres, min 2s)
-    const delay = Math.max(2000, text.length * 20);
-    await new Promise(resolve => setTimeout(resolve, delay));
-
-    await sock.sendMessage(jid, { text });
-    await sock.sendPresenceUpdate('paused', jid);
+    try {
+        await sock.presenceSubscribe(jid);
+        await sock.sendPresenceUpdate('composing', jid);
+        const delay = Math.max(2000, text.length * 20);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        await sock.sendMessage(jid, { text });
+        await sock.sendPresenceUpdate('paused', jid);
+    } catch (e) {
+        logger.error('Error enviando mensaje WhatsApp:', e);
+    }
 }
 
-module.exports = { connectToWhatsApp };
+// Getters para exportar estado
+function getWhatsAppStatus() {
+    return {
+        status: connectionStatus,
+        qr: currentQR,
+        pairingCode: pairingCode
+    };
+}
+
+module.exports = { connectToWhatsApp, getWhatsAppStatus };

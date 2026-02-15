@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fletea - Dashboard Profesional</title>
+    <!-- Incluir librería para generar QR en el cliente por si acaso, aunque lo traemos base64 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --secondary: #2c3e50;
+            --accent: #3498db;
+            --danger: #e74c3c;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .status-pill {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #e2e8f0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Estadísticas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 12px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        /* Listas */
+        .list-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .list-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .list-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        .list-item {
+            padding: 12px;
+            border-bottom: 1px solid #f1f5f9;
+            margin-bottom: 10px;
+            background: #fff;
+            border-left: 4px solid #e2e8f0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .tag-camionero {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .tag-productor {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        .tag-match {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        /* Conector WhatsApp */
+        #whatsapp-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0fff4 100%);
+            border: 2px solid var(--primary);
+        }
+
+        #qr-container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            margin: 10px 0;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        #qr-image {
+            max-width: 200px;
+            background: white;
+            padding: 10px;
+        }
+
+        .pairing-code {
+            font-size: 2rem;
+            font-family: monospace;
+            letter-spacing: 5px;
+            color: var(--secondary);
+            background: #f1f5f9;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        /* Simulador */
+        #sim-chat {
+            height: 250px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .msg-user {
+            align-self: flex-end;
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 2px;
+        }
+
+        .msg-bot {
+            align-self: flex-start;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 2px;
+        }
+
+        .sim-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: inherit;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-title">
+                <span style="font-size: 2.5rem;">🚛</span>
+                <div>
+                    <h1>FLETEA 360</h1>
+                    <p style="margin:0; font-size: 0.8rem; color: var(--text-muted);">Logística inteligente v1.3</p>
+                </div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <div id="status-db" class="status-pill">📡 DB</div>
+                <div id="status-wa" class="status-pill">📱 WhatsApp</div>
+            </div>
+        </header>
+
+        <div class="grid">
+            <!-- Columna Izquierda: Conexión y Stats -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                <!-- Card de WhatsApp -->
+                <div id="whatsapp-card" class="card">
+                    <h2>🔌 Conexión WhatsApp</h2>
+                    <div id="wa-connected" class="hidden" style="text-align: center; padding: 20px;">
+                        <span style="font-size: 3rem;">✅</span>
+                        <p style="font-weight: 600; color: var(--primary-dark); margin: 10px 0;">¡Bot en línea y
+                            funcionando!</p>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Puedes ver los logs de actividad en
+                            tiempo real.</p>
+                    </div>
+                    <div id="wa-disconnected">
+                        <p style="font-size: 0.85rem; margin-bottom: 10px;">Para activar el bot, escanea el QR o usa el
+                            código:</p>
+                        <div id="qr-container">
+                            <div id="qr-placeholder">Generando código...</div>
+                            <div id="qrcode"></div>
+                            <div id="pairing-code-display" class="hidden">
+                                <p style="font-size: 0.7rem; color: var(--text-muted);">Pairing Code:</p>
+                                <div class="pairing-code" id="p-code">--------</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Card -->
+                <div class="card">
+                    <h2>📊 Rendimiento Global</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Usuarios</span>
+                            <span id="stat-users" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Viajes</span>
+                            <span id="stat-trips" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Matches</span>
+                            <span id="stat-matches" class="stat-value">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat History -->
+                <div class="card">
+                    <h2>🔍 Auditoría de Chats</h2>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <input type="text" id="phone-filter" placeholder="Número (ej: 5492314...)">
+                        <button class="btn-secondary" onclick="loadChat()">Ver Conversación</button>
+                        <div id="chat-history" class="list-container"
+                            style="background: #f8fafc; border-radius: 8px; padding: 10px;">
+                            <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem;">Busca un usuario
+                                para ver su historial.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Matches y Usuarios -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                <!-- Matches -->
+                <div class="card" style="flex: 1;">
+                    <h2>🎯 Últimas Coincidencias</h2>
+                    <div id="matches-list" class="list-container">
+                        <p style="text-align: center; padding: 20px; color: var(--text-muted);">Cargando matches...</p>
+                    </div>
+                </div>
+
+                <!-- Usuarios -->
+                <div class="card" style="flex: 1;">
+                    <h2>👥 Comunidad Registrada</h2>
+                    <div id="users-list" class="list-container">
+                        <p style="text-align: center; padding: 20px; color: var(--text-muted);">Cargando usuarios...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulador -->
+            <div class="card" style="background: #eef2ff; border: 1px solid #c7d2fe;">
+                <h2>🎮 Sandbox / Simulador AI</h2>
+                <div id="sim-chat">
+                    <div class="msg msg-bot">Hola 👋. Soy el asistente de Fletea. ¿En qué puedo ayudarte hoy? (Modo
+                        Sandbox)</div>
+                </div>
+                <div class="sim-input-group">
+                    <input type="text" id="sim-input" placeholder="Dime: 'Busco flete en Pehuajó'..."
+                        onkeypress="if(event.key==='Enter') sendSimMessage()">
+                    <button class="btn-primary" onclick="sendSimMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const qrDisplay = new QRCode(document.getElementById("qrcode"), {
+            width: 180,
+            height: 180
+        });
+
+        async function fetchAPI(endpoint) {
+            try {
+                const res = await fetch(`/api${endpoint}`);
+                if (!res.ok) throw new Error(`Error ${res.status}`);
+                return await res.json();
+            } catch (e) {
+                console.error(e);
+                return null;
+            }
+        }
+
+        async function updateHeartbeat() {
+            const health = await fetchAPI('/health');
+            if (!health) return;
+
+            // Update badges
+            const dbBadge = document.getElementById('status-db');
+            dbBadge.style.background = health.database === 'connected' ? '#dcfce7' : '#fee2e2';
+            dbBadge.style.color = health.database === 'connected' ? '#166534' : '#991b1b';
+            dbBadge.innerHTML = `📡 DB: ${health.database.toUpperCase()}`;
+
+            const waBadge = document.getElementById('status-wa');
+            const waConnected = health.whatsapp === 'open';
+            waBadge.style.background = waConnected ? '#dcfce7' : '#fee2e2';
+            waBadge.style.color = waConnected ? '#166534' : '#991b1b';
+            waBadge.innerHTML = `📱 WA: ${health.whatsapp.toUpperCase()}`;
+
+            // Update connection card
+            const connectedUI = document.getElementById('wa-connected');
+            const disconnectedUI = document.getElementById('wa-disconnected');
+            if (waConnected) {
+                connectedUI.classList.remove('hidden');
+                disconnectedUI.classList.add('hidden');
+            } else {
+                connectedUI.classList.add('hidden');
+                disconnectedUI.classList.remove('hidden');
+
+                // Check for QR
+                const qrRes = await fetchAPI('/qr');
+                const qrPlaceholder = document.getElementById('qr-placeholder');
+                const qrDiv = document.getElementById('qrcode');
+
+                if (qrRes && qrRes.qr) {
+                    qrPlaceholder.classList.add('hidden');
+                    qrDiv.classList.remove('hidden');
+                    qrDisplay.makeCode(qrRes.qr);
+                } else if (health.pairingCode) {
+                    qrDiv.classList.add('hidden');
+                    qrPlaceholder.classList.add('hidden');
+                    document.getElementById('pairing-code-display').classList.remove('hidden');
+                    document.getElementById('p-code').innerText = health.pairingCode;
+                } else {
+                    qrPlaceholder.classList.remove('hidden');
+                    qrPlaceholder.innerText = "⏳ Esperando al bot...";
+                }
+            }
+        }
+
+        async function updateStats() {
+            const stats = await fetchAPI('/stats');
+            if (stats) {
+                document.getElementById('stat-users').innerText = stats.totalUsers || 0;
+                document.getElementById('stat-trips').innerText = stats.activeTrips || 0;
+                document.getElementById('stat-matches').innerText = stats.matchesRealizados || 0;
+            }
+
+            const matches = await fetchAPI('/matches');
+            const matchesList = document.getElementById('matches-list');
+            matchesList.innerHTML = '';
+            if (matches && matches.length > 0) {
+                matches.forEach(m => {
+                    const div = document.createElement('div');
+                    div.className = 'list-item';
+                    div.style.borderLeftColor = m.status === 'aceptado' ? '#2ecc71' : '#3498db';
+                    div.innerHTML = `
+                        <div style="display:flex; justify-content:space-between;">
+                            <span class="tag tag-match">${m.status.toUpperCase()}</span>
+                            <span style="font-size:0.75rem; color:var(--text-muted)">${new Date(m.matched_at).toLocaleDateString()}</span>
+                        </div>
+                        <div style="margin-top:8px;">
+                            🚛 <b>${m.camionero_name}</b> <br>
+                            🌾 <b>${m.productor_name}</b> <br>
+                            <span style="font-size:0.8rem; color:var(--accent)">Match Score: ${Math.round(m.score)}%</span>
+                        </div>
+                    `;
+                    matchesList.appendChild(div);
+                });
+            } else {
+                matchesList.innerHTML = '<p style="text-align:center; color:var(--text-muted)">No hay matches para mostrar.</p>';
+            }
+
+            const users = await fetchAPI('/users');
+            const usersList = document.getElementById('users-list');
+            usersList.innerHTML = '';
+            if (users && users.length > 0) {
+                users.forEach(u => {
+                    const div = document.createElement('div');
+                    div.className = 'list-item';
+                    div.style.borderLeftColor = u.type === 'camionero' ? '#2ecc71' : '#f1c40f';
+                    const tagClass = u.type === 'camionero' ? 'tag-camionero' : 'tag-productor';
+                    div.innerHTML = `
+                        <span class="tag ${tagClass}">${u.type.toUpperCase()}</span> <b>${u.name || 'Usuario'}</b><br>
+                        <span style="font-size:0.8rem; color:var(--text-muted)">📱 ${u.phone} | 📍 ${u.locality || '-'}</span>
+                    `;
+                    usersList.appendChild(div);
+                });
+            }
+        }
+
+        async function loadChat() {
+            const phone = document.getElementById('phone-filter').value;
+            if (!phone) return;
+            const history = await fetchAPI(`/conversations/${phone}`);
+            const chatDiv = document.getElementById('chat-history');
+            chatDiv.innerHTML = '';
+            if (history && history.length > 0) {
+                history.forEach(msg => {
+                    const div = document.createElement('div');
+                    div.style.padding = '8px';
+                    div.style.marginBottom = '5px';
+                    div.style.borderRadius = '6px';
+                    div.style.fontSize = '0.85rem';
+                    div.style.background = msg.role === 'user' ? '#fff' : '#eff6ff';
+                    div.style.border = '1px solid #e2e8f0';
+                    div.innerHTML = `<b style="text-transform:capitalize; font-size:0.7rem; color: #64748b; display:block;">${msg.role}</b> ${msg.content}`;
+                    chatDiv.appendChild(div);
+                });
+                chatDiv.scrollTop = chatDiv.scrollHeight;
+            } else {
+                chatDiv.innerHTML = '<p style="text-align:center; font-size:0.8rem; color:var(--text-muted)">Sin mensajes previos.</p>';
+            }
+        }
+
+        async function sendSimMessage() {
+            const input = document.getElementById('sim-input');
+            const chat = document.getElementById('sim-chat');
+            const text = input.value.trim();
+            if (!text) return;
+
+            chat.innerHTML += `<div class="msg msg-user">${text}</div>`;
+            const loading = document.createElement('div');
+            loading.className = 'msg msg-bot';
+            loading.innerHTML = '<i>Escribiendo...</i>';
+            chat.appendChild(loading);
+            chat.scrollTop = chat.scrollHeight;
+            input.value = '';
+
+            try {
+                const res = await fetch('/api/simulate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone: 'web-user', name: 'Tester Web', text })
+                });
+                const data = await res.json();
+                loading.remove();
+                chat.innerHTML += `<div class="msg msg-bot">${data.response || '...'}</div>`;
+                if (data.action) {
+                    chat.innerHTML += `<div style="font-size:0.7rem; color:var(--text-muted); align-self:center; background:#eee; padding:2px 8px; border-radius:4px;">Action: ${data.action.action}</div>`;
+                }
+                chat.scrollTop = chat.scrollHeight;
+                updateStats();
+            } catch (e) {
+                loading.innerHTML = 'Error al conectar con el servidor.';
+            }
+        }
+
+        // Init
+        updateHeartbeat();
+        updateStats();
+        setInterval(updateHeartbeat, 3000);
+        setInterval(updateStats, 10000);
+    </script>
+</body>
+
+</html>

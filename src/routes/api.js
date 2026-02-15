@@ -1,8 +1,6 @@
-// ============================================================
-// FletesCerealeros - API Routes (Dashboard)
-// ============================================================
 const express = require('express');
 const db = require('../db/database');
+const { getWhatsAppStatus } = require('../whatsapp/client');
 
 function createApiRouter() {
     const router = express.Router();
@@ -46,7 +44,6 @@ function createApiRouter() {
 
     router.get('/conversations/:phone', async (req, res) => {
         try {
-            // Fix: ensure correct method name and params
             const history = await db.getConversationHistory(req.params.phone, 50);
             res.json(history);
         } catch (e) {
@@ -55,12 +52,26 @@ function createApiRouter() {
     });
 
     router.get('/health', (req, res) => {
+        const whatsapp = getWhatsAppStatus();
         res.json({
             status: 'ok',
             database: db.isConnected() ? 'connected' : 'disconnected',
             ai: !!process.env.KIMI_API_KEY ? 'online' : 'simulation',
-            version: '1.2.0'
+            whatsapp: whatsapp.status,
+            hasQR: !!whatsapp.qr,
+            pairingCode: whatsapp.pairingCode,
+            version: '1.3.0'
         });
+    });
+
+    // Nuevo endpoint para obtener el QR base64
+    router.get('/qr', (req, res) => {
+        const whatsapp = getWhatsAppStatus();
+        if (whatsapp.qr) {
+            res.json({ qr: whatsapp.qr });
+        } else {
+            res.status(404).json({ error: 'No QR available or already connected' });
+        }
     });
 
     return router;
