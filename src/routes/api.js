@@ -54,6 +54,15 @@ function createApiRouter() {
         }
     });
 
+    router.get('/health', (req, res) => {
+        res.json({
+            status: 'ok',
+            database: db.isConnected() ? 'connected' : 'disconnected',
+            ai: !!process.env.KIMI_API_KEY ? 'online' : 'simulation',
+            version: '1.2.0'
+        });
+    });
+
     return router;
 }
 

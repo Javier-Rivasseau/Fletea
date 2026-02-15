@@ -151,11 +151,15 @@
         async function updateHealth() {
             const health = await fetchAPI('/health');
             const badge = document.getElementById('health-badge');
+            console.log('Health Status Check:', health);
             if (health) {
                 const dbStatus = health.database === 'connected' ? '🟢 DB' : '🔴 DB Offline';
                 const aiStatus = health.ai === 'online' ? '🤖 AI' : '👤 Sim AI';
                 badge.innerHTML = `${dbStatus} | ${aiStatus}`;
                 badge.style.background = health.database === 'connected' ? '#2ecc71' : '#e74c3c';
+            } else {
+                badge.innerHTML = '⚠️ Error API';
+                badge.style.background = '#e67e22';
             }
         }
 

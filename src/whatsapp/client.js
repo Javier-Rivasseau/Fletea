@@ -25,26 +25,42 @@ async function connectToWhatsApp() {
         saveCreds = auth.saveCreds;
     }
 
+    let isPairingRequested = false;
+
     const sock = makeWASocket({
-        printQRInTerminal: !process.env.PHONE_NUMBER, // Solo imprimir QR si no hay numero para pairing
+        printQRInTerminal: !process.env.PHONE_NUMBER,
         auth: state,
         defaultQueryTimeoutMs: undefined,
+        // Configuración para evitar desconexiones frecuentes
+        connectTimeoutMs: 60000,
+        keepAliveIntervalMs: 10000,
     });
 
     // Soporte para Pairing Code (Alternativa al QR)
+    const requestPairing = async () => {
+        if (isPairingRequested || !process.env.PHONE_NUMBER || sock.authState.creds.registered) return;
+
+        const phoneNumber = process.env.PHONE_NUMBER.replace(/\D/g, ''); // Limpiar símbolos
+        isPairingRequested = true;
+
+        logger.info(`📲 Solicitando código de vinculación para: ${phoneNumber}`);
+        try {
+            // Esperar un momento a que el socket esté listo para pairing
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            const code = await sock.requestPairingCode(phoneNumber);
+            logger.info('╔══════════════════════════════════════════════╗');
+            logger.info(`║  TU CÓDIGO DE VINCULACIÓN: ${code}       ║`);
+            logger.info('╚══════════════════════════════════════════════╝');
+            logger.info('Ingresalo en WhatsApp > Dispositivos vinculados > Vincular con código.');
+        } catch (err) {
+            logger.error('Error al solicitar pairing code:', err.message);
+            isPairingRequested = false; // Permitir reintento
+        }
+    };
+
+    // Solo pedir pairing si no estamos registrados
     if (process.env.PHONE_NUMBER && !sock.authState.creds.registered) {
-        logger.info(`📲 Solicitando código de vinculación para: ${process.env.PHONE_NUMBER}`);
-        setTimeout(async () => {
-            try {
-                const code = await sock.requestPairingCode(process.env.PHONE_NUMBER);
-                logger.info('╔══════════════════════════════════════════════╗');
-                logger.info(`║  TU CÓDIGO DE VINCULACIÓN: ${code}       ║`);
-                logger.info('╚══════════════════════════════════════════════╝');
-                logger.info('Ingresalo en WhatsApp > Dispositivos vinculados > Vincular con código.');
-            } catch (err) {
-                logger.error('Error al solicitar pairing code:', err);
-            }
-        }, 3000);
+        requestPairing();
     }
 
     sock.ev.on('connection.update', (update) => {
@@ -56,10 +72,14 @@ async function connectToWhatsApp() {
         }
 
         if (connection === 'close') {
-            const shouldReconnect = (lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut);
-            logger.warn('❌ Conexión cerrada. Reconectando:', shouldReconnect);
+            const statusCode = lastDisconnect.error?.output?.statusCode;
+            const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
+
+            logger.warn(`❌ Conexión cerrada (Status: ${statusCode}). Reconectando: ${shouldReconnect}`);
+
             if (shouldReconnect) {
-                connectToWhatsApp();
+                // Evitar reconexión inmediata explosiva
+                setTimeout(() => connectToWhatsApp(), 5000);
             }
         } else if (connection === 'open') {
             logger.info('✅ Conexión establecida con WhatsApp!');

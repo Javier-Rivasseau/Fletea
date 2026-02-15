@@ -78,16 +78,6 @@ async function startServer() {
             }
         });
 
-        // 8. Health Check
-        app.get('/api/health', (req, res) => {
-            res.json({
-                status: 'ok',
-                database: require('./db/database').isConnected() ? 'connected' : 'disconnected',
-                ai: !!process.env.KIMI_API_KEY ? 'online' : 'simulation',
-                version: '1.1.0'
-            });
-        });
-
         // 8. Iniciar Servidor Express
         const server = app.listen(PORT, '0.0.0.0', () => {
             logger.info('═══════════════════════════════════════════════');
