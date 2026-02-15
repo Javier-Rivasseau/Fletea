@@ -44,15 +44,17 @@ async function startServer() {
         app.use('/api', apiRoutes);
         logger.info('🌐 Rutas API cargadas');
 
-        // Redirigir la vieja ruta del dashboard a la raíz
-        app.get('/dashboard.html', (req, res) => {
-            logger.info('🔄 Redirigiendo /dashboard.html a /');
-            res.redirect('/');
-        });
+        // Endpoint simple para Health Check de Zeabur
+        app.get('/ping', (req, res) => res.send('pong'));
 
         // Registrar accesos al dashboard
         app.get('/', (req, res, next) => {
-            logger.info(`🖥️ Acceso al dashboard desde: ${req.ip}`);
+            logger.info(`🖥️ Acceso al dashboard (/) desde: ${req.ip}`);
+            next();
+        });
+
+        app.get('/dashboard.html', (req, res, next) => {
+            logger.info(`🖥️ Acceso al dashboard (/dashboard.html) desde: ${req.ip}`);
             next();
         });
 
