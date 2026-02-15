@@ -21,8 +21,7 @@ const logger = winston.createLogger({
                     return `${timestamp} ${level}: ${message}`;
                 })
             ),
-        }),
-        new winston.transports.File({ filename: 'fletes.log', maxsize: 5242880, maxFiles: 3 }),
+        })
     ],
 });
 
