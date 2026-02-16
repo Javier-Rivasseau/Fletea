@@ -42,82 +42,94 @@ function initDatabase() {
 async function initTables() {
     if (!pool) return;
 
-    let client;
-    try {
-        client = await pool.connect();
-        logger.info('🛰️ Conectado a PostgreSQL exitosamente');
-        await client.query(`
-            CREATE TABLE IF NOT EXISTS users (
-                id SERIAL PRIMARY KEY,
-                phone TEXT UNIQUE NOT NULL,
-                name TEXT,
-                type TEXT CHECK(type IN ('camionero', 'productor', 'ambos')) NOT NULL DEFAULT 'camionero',
-                locality TEXT,
-                registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                active BOOLEAN DEFAULT TRUE
-            );
+    return new Promise(async (resolve, reject) => {
+        // Timeout de seguridad: si la DB no responde en 15s, seguir adelante
+        const timeout = setTimeout(() => {
+            logger.warn('⚠️ La inicialización de tablas de Base de Datos está tardando demasiado. Continuando...');
+            resolve();
+        }, 15000);
 
-            CREATE TABLE IF NOT EXISTS trucks (
-                id SERIAL PRIMARY KEY,
-                user_id INTEGER NOT NULL REFERENCES users(id),
-                patente TEXT,
-                capacity_tn REAL DEFAULT 30,
-                trailer_type TEXT DEFAULT 'cerealero'
-            );
+        let client;
+        try {
+            client = await pool.connect();
+            logger.info('🛰️ Conectado a PostgreSQL exitosamente');
+            await client.query(`
+                CREATE TABLE IF NOT EXISTS users (
+                    id SERIAL PRIMARY KEY,
+                    phone TEXT UNIQUE NOT NULL,
+                    name TEXT,
+                    type TEXT CHECK(type IN ('camionero', 'productor', 'ambos')) NOT NULL DEFAULT 'camionero',
+                    locality TEXT,
+                    registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    active BOOLEAN DEFAULT TRUE
+                );
 
-            CREATE TABLE IF NOT EXISTS trips (
-                id SERIAL PRIMARY KEY,
-                user_id INTEGER NOT NULL REFERENCES users(id),
-                type TEXT CHECK(type IN ('oferta_flete', 'pedido_flete', 'retorno_vacio')) NOT NULL,
-                origin TEXT NOT NULL,
-                destination TEXT NOT NULL,
-                date TEXT,
-                time_estimate TEXT,
-                cereal_type TEXT,
-                tons REAL,
-                price_per_ton REAL,
-                status TEXT CHECK(status IN ('activo', 'matcheado', 'completado', 'cancelado')) DEFAULT 'activo',
-                notes TEXT,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            );
+                CREATE TABLE IF NOT EXISTS trucks (
+                    id SERIAL PRIMARY KEY,
+                    user_id INTEGER NOT NULL REFERENCES users(id),
+                    patente TEXT,
+                    capacity_tn REAL DEFAULT 30,
+                    trailer_type TEXT DEFAULT 'cerealero'
+                );
 
-            CREATE TABLE IF NOT EXISTS matches (
-                id SERIAL PRIMARY KEY,
-                trip_oferta_id INTEGER REFERENCES trips(id),
-                trip_pedido_id INTEGER REFERENCES trips(id),
-                camionero_id INTEGER NOT NULL REFERENCES users(id),
-                productor_id INTEGER NOT NULL REFERENCES users(id),
-                status TEXT CHECK(status IN ('propuesto', 'aceptado', 'rechazado', 'completado')) DEFAULT 'propuesto',
-                score REAL DEFAULT 0,
-                matched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            );
+                CREATE TABLE IF NOT EXISTS trips (
+                    id SERIAL PRIMARY KEY,
+                    user_id INTEGER NOT NULL REFERENCES users(id),
+                    type TEXT CHECK(type IN ('oferta_flete', 'pedido_flete', 'retorno_vacio')) NOT NULL,
+                    origin TEXT NOT NULL,
+                    destination TEXT NOT NULL,
+                    date TEXT,
+                    time_estimate TEXT,
+                    cereal_type TEXT,
+                    tons REAL,
+                    price_per_ton REAL,
+                    status TEXT CHECK(status IN ('activo', 'matcheado', 'completado', 'cancelado')) DEFAULT 'activo',
+                    notes TEXT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
 
-            CREATE TABLE IF NOT EXISTS conversations (
-                id SERIAL PRIMARY KEY,
-                user_phone TEXT NOT NULL,
-                role TEXT CHECK(role IN ('user', 'assistant', 'system')) NOT NULL,
-                content TEXT NOT NULL,
-                timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            );
+                CREATE TABLE IF NOT EXISTS matches (
+                    id SERIAL PRIMARY KEY,
+                    trip_oferta_id INTEGER REFERENCES trips(id),
+                    trip_pedido_id INTEGER REFERENCES trips(id),
+                    camionero_id INTEGER NOT NULL REFERENCES users(id),
+                    productor_id INTEGER NOT NULL REFERENCES users(id),
+                    status TEXT CHECK(status IN ('propuesto', 'aceptado', 'rechazado', 'completado')) DEFAULT 'propuesto',
+                    score REAL DEFAULT 0,
+                    matched_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
 
-            CREATE TABLE IF NOT EXISTS baileys_auth (
-                category TEXT NOT NULL,
-                key_id TEXT NOT NULL,
-                value TEXT NOT NULL,
-                PRIMARY KEY (category, key_id)
-            );
+                CREATE TABLE IF NOT EXISTS conversations (
+                    id SERIAL PRIMARY KEY,
+                    user_phone TEXT NOT NULL,
+                    role TEXT CHECK(role IN ('user', 'assistant', 'system')) NOT NULL,
+                    content TEXT NOT NULL,
+                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
 
-            CREATE INDEX IF NOT EXISTS idx_trips_status ON trips(status);
-            CREATE INDEX IF NOT EXISTS idx_trips_type ON trips(type);
-            CREATE INDEX IF NOT EXISTS idx_conversations_phone ON conversations(user_phone);
-            CREATE INDEX IF NOT EXISTS idx_matches_status ON matches(status);
-        `);
-        logger.info('✅ Tablas PostgreSQL verificadas/creadas');
-    } catch (err) {
-        logger.error('Error inicializando tablas:', err);
-    } finally {
-        client.release();
-    }
+                CREATE TABLE IF NOT EXISTS baileys_auth (
+                    category TEXT NOT NULL,
+                    key_id TEXT NOT NULL,
+                    value TEXT NOT NULL,
+                    PRIMARY KEY (category, key_id)
+                );
+
+                CREATE INDEX IF NOT EXISTS idx_trips_status ON trips(status);
+                CREATE INDEX IF NOT EXISTS idx_trips_type ON trips(type);
+                CREATE INDEX IF NOT EXISTS idx_conversations_phone ON conversations(user_phone);
+                CREATE INDEX IF NOT EXISTS idx_matches_status ON matches(status);
+            `);
+            logger.info('✅ Tablas PostgreSQL verificadas/creadas');
+            clearTimeout(timeout);
+            resolve();
+        } catch (err) {
+            logger.error('Error inicializando tablas:', err);
+            clearTimeout(timeout);
+            resolve(); // Continuar aunque falle, para no romper el dashboard
+        } finally {
+            if (client) client.release();
+        }
+    });
 }
 
 // ─── Auth Store Operations ──────────────────────────────────

@@ -31,75 +31,26 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Inicialización
 async function startServer() {
     try {
-        // 1. Iniciar Base de Datos (PostgreSQL)
-        await initDatabase();
-        logger.info('📦 Base de datos inicializada');
-
-        // 2. Iniciar Kimi AI
-        initKimiClient();
-        logger.info('🧠 Kimi AI inicializado');
-
-        // 4. Rutas API (Dashboard)
-        const apiRoutes = createApiRouter();
-        app.use('/api', apiRoutes);
-        logger.info('🌐 Rutas API cargadas');
-
-        // Endpoint simple para Health Check de Zeabur
-        app.get('/ping', (req, res) => res.send('pong'));
-
-        // Registrar accesos al dashboard
-        app.get('/', (req, res, next) => {
-            logger.info(`🖥️ Acceso al dashboard (/) desde: ${req.ip}`);
-            next();
-        });
-
-        app.get('/dashboard.html', (req, res, next) => {
-            logger.info(`🖥️ Acceso al dashboard (/dashboard.html) desde: ${req.ip}`);
-            next();
-        });
-
-        // 6. Configurar callback para notificaciones web (simulación)
-        setWebNotifyCallback((message) => {
-            logger.debug('Web notification callback triggered:', message);
-        });
-
-        // 7. Endpoint de Simulación
-        app.post('/api/simulate', async (req, res) => {
-            try {
-                const { phone, text, name } = req.body;
-                const result = await handleIncomingMessage({
-                    phone,
-                    text,
-                    name,
-                    source: 'web_simulation'
-                });
-                res.json(result);
-            } catch (error) {
-                logger.error('Error en simulación:', error);
-                res.status(500).json({ error: error.message });
-            }
-        });
-
-        // 8. Iniciar Servidor Express
+        // 1. Iniciar Servidor Express PRIMERO
+        // Esto garantiza que el dashboard sea accesible incluso si la DB tarda en conectar.
         const server = app.listen(PORT, '0.0.0.0', () => {
             logger.info('═══════════════════════════════════════════════');
-            logger.info(`🚀 Servidor FLETEA corriendo en puerto ${PORT}`);
+            logger.info(`🚀 Servidor FLETEA activo en puerto ${PORT}`);
             logger.info(`🌐 Host: 0.0.0.0`);
             logger.info(`📊 Dashboard: http://localhost:${PORT}/`);
             logger.info('═══════════════════════════════════════════════');
 
-            // 3. Conectar a WhatsApp (Baileys) – DESPUÉS de que el servidor esté listo
-            // Esto ayuda a pasar los health checks de despliegue antes de iniciar WA.
-            if (process.env.ENABLE_WHATSAPP === 'true') {
-                logger.info('📱 Iniciando conexión a WhatsApp...');
-                connectToWhatsApp();
-            } else {
-                logger.info('📱 WhatsApp desactivado (ENABLE_WHATSAPP !== true). Usando solo modo Web.');
-            }
+            // Iniciar servicios pesados en "background"
+            initializeServices();
+        });
 
-            if (MODE === 'simulation') {
-                logger.info('🎮 MODO SIMULACIÓN ACTIVADO');
-            }
+        // Endpoint simple para Health Check
+        app.get('/ping', (req, res) => res.send('pong'));
+
+        // Registro de accesos
+        app.get('/', (req, res, next) => {
+            logger.info(`🖥️ Acceso dashboard (/) - IP: ${req.ip}`);
+            next();
         });
 
         server.on('error', (err) => {
@@ -112,9 +63,43 @@ async function startServer() {
         });
 
     } catch (error) {
-        logger.error('❌ ERROR FATAL DURANTE EL ARRANQUE:', error);
-        // Intentar mantener el proceso vivo unos segundos para que el usuario vea el log
+        logger.error('❌ ERROR CRÍTICO EN EXPRESS:', error);
         setTimeout(() => process.exit(1), 5000);
+    }
+}
+
+async function initializeServices() {
+    try {
+        // 1. Iniciar Base de Datos (PostgreSQL)
+        logger.info('⏳ Conectando con Base de Datos...');
+        await initDatabase();
+        logger.info('📦 Base de datos vinculada');
+
+        // 2. Iniciar Kimi AI
+        initKimiClient();
+        logger.info('🧠 Kimi AI cargado');
+
+        // 3. Rutas API (Dashboard)
+        const apiRoutes = createApiRouter();
+        app.use('/api', apiRoutes);
+        logger.info('🌐 Endpoints API activados');
+
+        // 4. Modo Simulación
+        setWebNotifyCallback((message) => {
+            logger.debug('Notificación Web:', message);
+        });
+
+        // 5. Iniciar WhatsApp (Baileys) si está activado
+        if (process.env.ENABLE_WHATSAPP === 'true' || process.env.MODE === 'production') {
+            logger.info('📱 Preparando módulo WhatsApp...');
+            connectToWhatsApp();
+        } else {
+            logger.info('📱 WhatsApp omitido (Modo Simulación/Web)');
+        }
+
+    } catch (error) {
+        logger.error('⚠️ ERROR DURANTE INICIALIZACIÓN DE SERVICIOS:', error.message);
+        // No matamos el proceso, permitimos re-intentos o uso limitado del dashboard
     }
 }
 

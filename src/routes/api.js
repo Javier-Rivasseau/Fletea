@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../db/database');
 const { getWhatsAppStatus } = require('../whatsapp/client');
+const { handleIncomingMessage } = require('../handler/conversation');
 
 function createApiRouter() {
     const router = express.Router();
@@ -56,11 +57,11 @@ function createApiRouter() {
         res.json({
             status: 'ok',
             database: db.isConnected() ? 'connected' : 'disconnected',
-            ai: !!process.env.KIMI_API_KEY ? 'online' : 'simulation',
+            ai: !!process.env.KIMI_API_KEY ? 'online (Kimi 2.5)' : 'simulation',
             whatsapp: whatsapp.status,
             hasQR: !!whatsapp.qr,
             pairingCode: whatsapp.pairingCode,
-            version: '1.3.0'
+            version: '1.4.0'
         });
     });
 
@@ -71,6 +72,23 @@ function createApiRouter() {
             res.json({ qr: whatsapp.qr });
         } else {
             res.status(404).json({ error: 'No QR available or already connected' });
+        }
+    });
+
+    // Endpoint de Simulación para probar sin WhatsApp
+    router.post('/simulate', async (req, res) => {
+        try {
+            const { phone, text, name } = req.body;
+            const result = await handleIncomingMessage({
+                phone,
+                text,
+                name,
+                source: 'web_simulation'
+            });
+            res.json(result);
+        } catch (error) {
+            console.error('Error en simulación API:', error);
+            res.status(500).json({ error: error.message });
         }
     });
 

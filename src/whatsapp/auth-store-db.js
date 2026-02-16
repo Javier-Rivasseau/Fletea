@@ -6,7 +6,9 @@ const usePostgresAuthState = async (sessionId) => {
     // Helper to read data from DB
     const readData = async (category, id) => {
         try {
-            return await getAuthKey(category, id);
+            const data = await getAuthKey(category, id);
+            if (!data) return null;
+            return JSON.parse(data, BufferJSON.reviver);
         } catch (error) {
             logger.error(`Error reading auth data (${category}, ${id}):`, error);
             return null;
@@ -16,7 +18,8 @@ const usePostgresAuthState = async (sessionId) => {
     // Helper to write data to DB
     const writeData = async (category, id, value) => {
         try {
-            await saveAuthKey(category, id, value);
+            const data = JSON.stringify(value, BufferJSON.replacer);
+            await saveAuthKey(category, id, data);
         } catch (error) {
             logger.error(`Error writing auth data (${category}, ${id}):`, error);
         }
