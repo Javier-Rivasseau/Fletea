@@ -12,7 +12,7 @@ const { createApiRouter } = require('./routes/api');
 const { handleIncomingMessage, setWebNotifyCallback } = require('./handler/conversation');
 const { connectToWhatsApp } = require('./whatsapp/client');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || process.env.ZBPACK_SERVER_PORT || 3000;
 const MODE = process.env.MODE || 'simulation';
 
 // ─── Initialize ──────────────────────────────────────────────
