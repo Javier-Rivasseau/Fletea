@@ -14,7 +14,8 @@ RUN npm ci --only=production
 # Copy app source
 COPY . .
 
-
+# Expose port so Zeabur can automatically detect the HTTP server
+EXPOSE 3000
 
 # Start command
 CMD ["npm", "start"]
