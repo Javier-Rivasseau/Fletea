@@ -28,29 +28,30 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
+// Endpoint simple para Health Check (registrado antes de todo)
+app.get('/ping', (req, res) => res.send('pong'));
+
+// Registro de accesos al dashboard
+app.use('/', (req, res, next) => {
+    if (req.method === 'GET' && req.path === '/') {
+        logger.info(`🖥️ Acceso dashboard (/) - IP: ${req.ip}`);
+    }
+    next();
+});
+
 // Inicialización
 async function startServer() {
     try {
-        // 1. Iniciar Servidor Express PRIMERO
-        // Esto garantiza que el dashboard sea accesible incluso si la DB tarda en conectar.
+        // 1. Iniciar servicios
+        await initializeServices();
+
+        // 2. Iniciar Servidor Express DESPUÉS de registrar las rutas
         const server = app.listen(PORT, '0.0.0.0', () => {
             logger.info('═══════════════════════════════════════════════');
             logger.info(`🚀 Servidor FLETEA activo en puerto ${PORT}`);
             logger.info(`🌐 Host: 0.0.0.0`);
             logger.info(`📊 Dashboard: http://localhost:${PORT}/`);
             logger.info('═══════════════════════════════════════════════');
-
-            // Iniciar servicios pesados en "background"
-            initializeServices();
-        });
-
-        // Endpoint simple para Health Check
-        app.get('/ping', (req, res) => res.send('pong'));
-
-        // Registro de accesos
-        app.get('/', (req, res, next) => {
-            logger.info(`🖥️ Acceso dashboard (/) - IP: ${req.ip}`);
-            next();
         });
 
         server.on('error', (err) => {
@@ -79,7 +80,7 @@ async function initializeServices() {
         initKimiClient();
         logger.info('🧠 Kimi AI cargado');
 
-        // 3. Rutas API (Dashboard)
+        // 3. Rutas API (Dashboard) — registradas ANTES de app.listen()
         const apiRoutes = createApiRouter();
         app.use('/api', apiRoutes);
         logger.info('🌐 Endpoints API activados');
@@ -89,12 +90,18 @@ async function initializeServices() {
             logger.debug('Notificación Web:', message);
         });
 
-        // 5. Iniciar WhatsApp (Baileys) si está activado
-        if (process.env.ENABLE_WHATSAPP === 'true' || process.env.MODE === 'production') {
-            logger.info('📱 Preparando módulo WhatsApp...');
+        // 5. Iniciar WhatsApp (Baileys)
+        // Se activa si ENABLE_WHATSAPP=true, o si MODE=production, o si DATABASE_URL existe (Zeabur)
+        const shouldStartWhatsApp =
+            process.env.ENABLE_WHATSAPP === 'true' ||
+            process.env.MODE === 'production' ||
+            (process.env.DATABASE_URL && process.env.MODE !== 'simulation');
+
+        if (shouldStartWhatsApp) {
+            logger.info('📱 Preparando módulo WhatsApp (Baileys)...');
             connectToWhatsApp();
         } else {
-            logger.info('📱 WhatsApp omitido (Modo Simulación/Web)');
+            logger.info('📱 WhatsApp omitido (Modo Simulación/Web). Setea ENABLE_WHATSAPP=true para activarlo.');
         }
 
     } catch (error) {

@@ -66,7 +66,12 @@ async function connectToWhatsApp() {
         if (qr && !process.env.PHONE_NUMBER) {
             currentQR = qr;
             logger.info('📲 Nuevo QR generado. Disponible en el Dashboard.');
-            qrcode.generate(qr, { small: true });
+            try {
+                qrcode.generate(qr, { small: true });
+            } catch (e) {
+                // En entornos sin TTY (como Zeabur) esto puede fallar — no es crítico
+                logger.debug('qrcode-terminal no disponible en este entorno (sin TTY)');
+            }
         }
 
         if (connection === 'close') {
