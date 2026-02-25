@@ -42,10 +42,7 @@ app.use('/', (req, res, next) => {
 // Inicialización
 async function startServer() {
     try {
-        // 1. Iniciar servicios
-        await initializeServices();
-
-        // 2. Iniciar Servidor Express DESPUÉS de registrar las rutas
+        // 1. Iniciar Servidor Express PRIMERO para evitar Timeouts en Zeabur (Health Check)
         const server = app.listen(PORT, '0.0.0.0', () => {
             logger.info('═══════════════════════════════════════════════');
             logger.info(`🚀 Servidor FLETEA activo en puerto ${PORT}`);
@@ -62,6 +59,9 @@ async function startServer() {
                 logger.error('❌ Error en servidor Express:', err);
             }
         });
+
+        // 2. Iniciar servicios pesados (DB, WhatsApp) en background
+        await initializeServices();
 
     } catch (error) {
         logger.error('❌ ERROR CRÍTICO EN EXPRESS:', error);

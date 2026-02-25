@@ -78,12 +78,21 @@ async function connectToWhatsApp() {
             connectionStatus = 'closed';
             currentQR = null;
             const statusCode = lastDisconnect.error?.output?.statusCode;
-            const shouldReconnect = statusCode !== DisconnectReason.loggedOut;
+
+            const isLoggedOut = statusCode === DisconnectReason.loggedOut;
+            const isConflict = statusCode === 405; // 405 means session conflict (connection replaced)
+            const shouldReconnect = !isLoggedOut && !isConflict;
 
             logger.warn(`❌ Conexión cerrada (Status: ${statusCode}). Reconectando: ${shouldReconnect}`);
 
+            if (isLoggedOut) {
+                logger.warn('⚠️ Sesión de WhatsApp cerrada. Debes volver a escanear el QR o generar código desde el Dashboard.');
+            } else if (isConflict) {
+                logger.warn('⚠️ Conflicto de sesión (Status 405). Fletea está corriendo en otro servidor (ej. Zeabur). Deteniendo reconexión automática en este entorno para evitar spam.');
+            }
+
             if (shouldReconnect) {
-                setTimeout(() => connectToWhatsApp(), 5000);
+                setTimeout(() => connectToWhatsApp(), 10000); // 10s backoff
             }
         } else if (connection === 'open') {
             connectionStatus = 'open';
