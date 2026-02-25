@@ -75,6 +75,17 @@ function createApiRouter() {
         }
     });
 
+    // Endpoint para limpiar la sesión de WhatsApp (útil si el QR expiró o la sesión es inválida)
+    router.post('/reset-whatsapp', async (req, res) => {
+        try {
+            const pool = db.getPool();
+            await pool.query('DELETE FROM baileys_auth');
+            res.json({ ok: true, message: 'Sesión de WhatsApp borrada. Reiniciá el servidor para generar un QR nuevo.' });
+        } catch (e) {
+            res.status(500).json({ error: e.message });
+        }
+    });
+
     // Endpoint de Simulación para probar sin WhatsApp
     router.post('/simulate', async (req, res) => {
         try {

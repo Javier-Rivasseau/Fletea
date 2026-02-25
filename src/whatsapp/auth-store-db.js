@@ -1,8 +1,10 @@
-const { initAuthCreds, BufferJSON, proto } = require('@whiskeysockets/baileys');
 const { saveAuthKey, getAuthKey, deleteAuthKey } = require('../db/database');
 const logger = require('../utils/logger');
 
 const usePostgresAuthState = async (sessionId) => {
+    // Baileys es ESM-only — necesita import() dinámico
+    const { initAuthCreds, BufferJSON, proto } = await import('@whiskeysockets/baileys');
+
     // Helper to read data from DB
     const readData = async (category, id) => {
         try {
