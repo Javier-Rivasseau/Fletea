@@ -63,14 +63,15 @@ async function connectToWhatsApp() {
     sock.ev.on('connection.update', (update) => {
         const { connection, lastDisconnect, qr } = update;
 
-        if (qr && !process.env.PHONE_NUMBER) {
+        if (qr) {
             currentQR = qr;
             logger.info('📲 Nuevo QR generado. Disponible en el Dashboard.');
-            try {
-                qrcode.generate(qr, { small: true });
-            } catch (e) {
-                // En entornos sin TTY (como Zeabur) esto puede fallar — no es crítico
-                logger.debug('qrcode-terminal no disponible en este entorno (sin TTY)');
+            if (!process.env.PHONE_NUMBER) {
+                try {
+                    qrcode.generate(qr, { small: true });
+                } catch (e) {
+                    logger.debug('qrcode-terminal no disponible en este entorno (sin TTY)');
+                }
             }
         }
 
@@ -149,7 +150,7 @@ async function sendMessage(sock, jid, text) {
     try {
         await sock.presenceSubscribe(jid);
         await sock.sendPresenceUpdate('composing', jid);
-        const delay = Math.max(2000, text.length * 20);
+        const delay = Math.min(1000, text.length * 5); // Mucho más rápido que antes
         await new Promise(resolve => setTimeout(resolve, delay));
         await sock.sendMessage(jid, { text });
         await sock.sendPresenceUpdate('paused', jid);

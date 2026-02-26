@@ -409,8 +409,22 @@
                     <div class="msg msg-bot">Hola 👋. Soy el asistente de Fletea. ¿En qué puedo ayudarte hoy? (Modo
                         Sandbox)</div>
                 </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                    <div>
+                        <label
+                            style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Nombre
+                            Simulado</label>
+                        <input type="text" id="sim-name" placeholder="Ej: Juan Pérez" value="Tester Web">
+                    </div>
+                    <div>
+                        <label
+                            style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-bottom: 4px;">Teléfono
+                            Simulado</label>
+                        <input type="text" id="sim-phone" placeholder="Ej: 549..." value="web-user">
+                    </div>
+                </div>
                 <div class="sim-input-group">
-                    <input type="text" id="sim-input" placeholder="Dime: 'Busco flete en Pehuajó'..."
+                    <input type="text" id="sim-input" placeholder="Escribí: 'Busco flete en Pehuajó'..."
                         onkeypress="if(event.key==='Enter') sendSimMessage()">
                     <button class="btn-primary" onclick="sendSimMessage()">Enviar</button>
                 </div>
@@ -560,10 +574,15 @@
         async function sendSimMessage() {
             const input = document.getElementById('sim-input');
             const chat = document.getElementById('sim-chat');
+            const nameInput = document.getElementById('sim-name');
+            const phoneInput = document.getElementById('sim-phone');
             const text = input.value.trim();
+            const name = nameInput.value.trim() || 'Tester Web';
+            const phone = phoneInput.value.trim() || 'web-user';
+
             if (!text) return;
 
-            chat.innerHTML += `<div class="msg msg-user">${text}</div>`;
+            chat.innerHTML += `<div class="msg msg-user"><b>${name}:</b><br>${text}</div>`;
             const loading = document.createElement('div');
             loading.className = 'msg msg-bot';
             loading.innerHTML = '<i>Escribiendo...</i>';
@@ -575,7 +594,7 @@
                 const res = await fetch('/api/simulate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ phone: 'web-user', name: 'Tester Web', text })
+                    body: JSON.stringify({ phone, name, text })
                 });
                 const data = await res.json();
                 loading.remove();
